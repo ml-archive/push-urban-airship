@@ -1,16 +1,5 @@
 # UAPusher
 
-In `Packeage.swift` add the following (will of course be pointing at Package when done.
-
-```swift
-targets: [
-        Target(name: "UAPusher"),
-        Target(name: "App", dependencies: [
-            .Target(name: "UAPusher")
-            ])
-    ],
-```
-
 In `main.swift` import the UAPusher framework and just instantiate on the droplet.
 
 
@@ -31,7 +20,7 @@ drop.run()
 
 Use the following code in your project to send a push (will be updated very soon to have it's own builder)
 
-```
+```swift
 let body = try JSON(node: [
 	"audience": "all",
 	"device_types": [
