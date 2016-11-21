@@ -1,5 +1,9 @@
 # UAPusher
 
+Package:
+`.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0)
+`
+
 In `main.swift` import the UAPusher framework and just instantiate on the droplet.
 
 
