@@ -2,6 +2,7 @@ import Vapor
 
 public final class UARequest {
     
+    //Will be replaced later..
     let body: JSON
     
     public init(body: JSON) {
