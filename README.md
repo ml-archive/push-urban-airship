@@ -4,18 +4,9 @@ In `main.swift` import the UAPusher framework and just instantiate on the drople
 
 
 ```swift
-import Vapor
 import UAPusher
 
-let drop = Droplet()
-
 drop.uapusher = try UAPusher(drop: drop)
-
-drop.group("api") { api in
-    api.resource("posts", PostController())
-}
-
-drop.run()
 ```
 
 Use the following code in your project to send a push (will be updated very soon to have it's own builder)
