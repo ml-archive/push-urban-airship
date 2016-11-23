@@ -35,7 +35,9 @@ public final class ConnectionMananger {
         let url = baseUrl + slug
         let uaResponse = try drop.client.post(url, headers: headers(), body: body.makeBody())
         
-        if(uaResponse.status != .accepted) {
+        if(slug == "/api/push/validate" && uaResponse.status == .ok) {
+            throw Abort.custom(status: uaResponse.status, message: "UA - Validated and should be ready to send push. Please use the '.send()' method instead")
+        } else if(uaResponse.status != .accepted) {
             throw Abort.custom(status: uaResponse.status, message: "UA error - Response was not OK")
         } else {
             return .accepted

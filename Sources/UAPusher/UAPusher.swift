@@ -4,6 +4,8 @@ import HTTP
 
 public final class UAPusher {
     
+    //Hello world!
+    
     public let config: UAPusherConfig
     public let connectionManager: ConnectionMananger
     public let drop: Droplet
