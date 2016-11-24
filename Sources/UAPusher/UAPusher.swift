@@ -65,4 +65,18 @@ public final class UAPusher {
         
     }
     
+    public func validateRequest(request: JSON) throws -> Status {
+        
+        let response = try self.connectionManager.post(slug: "/api/push/validate", body: request)
+        return response
+        
+    }
+    
+    public func validateRequest(request: UARequest) throws -> Status {
+        
+        let response = try self.connectionManager.post(slug: "/api/push/validate", body: request.getBody())
+        return response
+        
+    }
+    
 }
