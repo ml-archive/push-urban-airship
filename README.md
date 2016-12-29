@@ -1,4 +1,9 @@
 # UAPusher
+[![Language](https://img.shields.io/badge/Swift-3-brightgreen.svg)](http://swift.org)
+[![Build Status](https://travis-ci.org/nodes-vapor/push-urban-airship.svg?branch=master)](https://travis-ci.org/nodes-vapor/push-urban-airship)
+[![codecov](https://codecov.io/gh/nodes-vapor/push-urban-airship/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/push-urban-airship)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
+
 
 Package:
 `.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0, minor: 1)
