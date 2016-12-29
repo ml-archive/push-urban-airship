@@ -16,7 +16,7 @@ public final class ConnectionMananger {
         
         let username = self.config.appKey
         let password = self.config.masterSecret
-        let loginString = String(format: "%@:%@", username, password)
+        let loginString = username + ":" + password
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
         
