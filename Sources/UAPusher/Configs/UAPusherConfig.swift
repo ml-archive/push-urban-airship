@@ -1,22 +1,5 @@
 import Vapor
 
-/// Defines an Application (from the configs)
-struct Application {
-    
-    let name: String
-    let masterSecret: String
-    let appKey: String
-    
-}
-
-/// Defines an ApplicationGroup (from the configs)
-struct ApplicationGroup {
-    
-    let name: String
-    var applications: [Application]
-    
-}
-
 public struct UAPusherConfig {
     
     var applicationGroups: [ApplicationGroup] = []
