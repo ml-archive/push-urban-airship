@@ -1,28 +1,34 @@
 import Vapor
 
+/// Defines an Application (from the configs)
+struct Application {
+    
+    let name: String
+    let masterSecret: String
+    let appKey: String
+    
+}
+
+/// Defines an ApplicationGroup (from the configs)
+struct ApplicationGroup {
+    
+    let name: String
+    var applications: [Application]
+    
+}
+
 public struct UAPusherConfig {
     
-    var masterSecret: String
-    var appKey: String
-    
-    enum ConfigError: String {
-        case uapusher = "uapusher"
-        case defaultApplication = "defaultApplication"
-        case log = "log"
-        case applications = "applications"
-        
-        var error: Abort {
-            return .custom(status: .internalServerError,
-                           message: "UAPusher error - uapusher.\(rawValue) config is missing.")
-        }
-    }
+    var applicationGroups: [ApplicationGroup] = []
     
     init(drop: Droplet) throws {
-        // Set config
-        let optionalConfig = drop.config["uapusher"]
         
-        guard let config: Config = optionalConfig else {
-            throw ConfigError.uapusher.error
+        // Set config
+        guard let config: Config = drop.config["uapusher"] else {
+            throw Abort.custom(
+                status: .internalServerError,
+                message: "UAPusher error - uapusher.json config is missing."
+            )
         }
         
         try self.init(config: config)
@@ -30,17 +36,61 @@ public struct UAPusherConfig {
     
     init(config: Config) throws {
         
-        guard let masterSecret = config["master_secret"]?.string else {
-            throw ConfigError.uapusher.error
+        guard let applicationGroups = config["applicationGroups"]?.object else {
+            throw Abort.custom(
+                status: .internalServerError,
+                message: "UAPusher error - applicationGroups are not set."
+            )
         }
         
-        guard let appKey = config["app_key"]?.string else {
-            throw ConfigError.uapusher.error
+        if (applicationGroups.count < 1){
+            throw Abort.custom(
+                status: .internalServerError,
+                message: "UAPusher error - there are no applicationGroups."
+            )
         }
         
-        self.masterSecret = masterSecret
-        self.appKey = appKey
-        
+        for applicationGroup in applicationGroups {
+            
+            var group = ApplicationGroup(name: applicationGroup.key, applications: [])
+            
+            // Try to get the apps inside the  applicationGroup
+            guard let applications = applicationGroup.value.object else {
+                throw Abort.custom(
+                    status: .internalServerError,
+                    message: "UAPusher error - applicationGroup is missing applications."
+                )
+            }
+            
+            for application in applications {
+                
+                let appName = application.key
+                
+                guard let masterSecret = application.value.object?["masterSecret"]?.string else {
+                    throw Abort.custom(
+                        status: .internalServerError,
+                        message: "UAPusher error - application is missing masterSecret."
+                    )
+                }
+                
+                guard let appKey = application.value.object?["appKey"]?.string else {
+                    throw Abort.custom(
+                        status: .internalServerError,
+                        message: "UAPusher error - application is missing appKey."
+                    )
+                }
+                
+                group.applications.append(
+                    Application(
+                        name: appName,
+                        masterSecret: masterSecret,
+                        appKey: appKey
+                    )
+                )
+            }
+            
+            // Store the group
+            self.applicationGroups.append(group)
+        }
     }
-    
 }

@@ -25,9 +25,16 @@ public final class UAPusher {
         
         //Add more defensive coding here
         
-        let response = try self.connectionManager.post(slug: "/api/push", body: request.getBody())
-        return response
+        let responses = try self.connectionManager.post(slug: "/api/push", content: request.getBody())
         
+        for response in responses {
+            
+            if response != .accepted {
+                throw Abort.custom(status: response, message: "UA request was not OK")
+            }
+            
+        }
+        
+        return .accepted
     }
-    
 }
