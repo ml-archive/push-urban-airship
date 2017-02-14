@@ -56,16 +56,16 @@ to send the push to.
 ```bash
 {
 	"applicationGroups": {
-        "defaultGroup": {
-            "app-1": {
-                "masterSecret": "xxxx",
-                "appKey": "xxxx"
-            },
-            "ios-test-app": {
-                "masterSecret": "yyyy",
-                "appKey": "yyyy"
-            }
-        }
-    }
+		"defaultGroup": {
+		    "app-1": {
+		        "masterSecret": "xxxx",
+		        "appKey": "xxxx"
+		    },
+		    "ios-test-app": {
+		        "masterSecret": "yyyy",
+		        "appKey": "yyyy"
+		    }
+		}
+	}
 }
 ```
