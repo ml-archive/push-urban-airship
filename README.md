@@ -50,11 +50,22 @@ if response == .accepted {
 }
 ```
 
-Please add a config file `uapusher.json`
+Please add a config file `uapusher.json`. You can define multiple applications
+to send the push to.
 
 ```bash
 {
-    "master_secret": "xxxx",
-    "app_key": "xxxx"
+	"applicationGroups": {
+		"defaultGroup": {
+		    "app-1": {
+		        "masterSecret": "xxxx",
+		        "appKey": "xxxx"
+		    },
+		    "ios-test-app": {
+		        "masterSecret": "yyyy",
+		        "appKey": "yyyy"
+		    }
+		}
+	}
 }
 ```
