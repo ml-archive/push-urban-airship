@@ -4,30 +4,46 @@
 [![codecov](https://codecov.io/gh/nodes-vapor/push-urban-airship/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/push-urban-airship)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
 
+# Send push notifications with Urban Airship for Vapor
 
-Package:
-`.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0, minor: 2)
-`
-
-In `main.swift` import the UAPusher framework and just instantiate on the droplet.
-
-
+# Installation
+Update your `Package.swift` file.
 ```swift
-import Vapor
-import UAPusher
-
-let drop = Droplet()
-
-drop.uapusher = try UAPusher(drop: drop)
-
-drop.group("api") { api in
-    api.resource("posts", PostController())
-}
-
-drop.run()
+.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0, minor: 2)
 ```
 
-Use the following code in your project to send a push (will be updated very soon to have it's own builder)
+### Config
+Create config file `uapusher.json` with following syntax
+
+```json
+{
+	"applicationGroups": {
+		"defaultGroup": {
+		    "development": {
+    		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
+		    },
+		    "staging": {
+    		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
+		    }
+		}
+	}
+}
+```
+
+You can define multiple apps like in the example. Else just delete one of groups
+
+### main.swift 
+Init the UAPusher to drop
+
+```swift
+import UAPusher
+
+drop.uapusher = try UAPusher(drop: drop)
+```
+
+# Example
 
 ```swift
 let body = try JSON(node: [
@@ -49,23 +65,7 @@ if response == .accepted {
 	print("Push send..")
 }
 ```
+Check out the api documentation (http://docs.urbanairship.com/api/ua/)
 
-Please add a config file `uapusher.json`. You can define multiple applications
-to send the push to.
-
-```bash
-{
-	"applicationGroups": {
-		"defaultGroup": {
-		    "app-1": {
-    		        "appKey": "yyyy",
-		        "masterSecret": "yyyy"
-		    },
-		    "ios-test-app": {
-    		        "appKey": "yyyy",
-		        "masterSecret": "yyyy"
-		    }
-		}
-	}
-}
-```
+# Todo
+ - Make a builder like (https://github.com/nodes-php/push)
