@@ -58,12 +58,12 @@ to send the push to.
 	"applicationGroups": {
 		"defaultGroup": {
 		    "app-1": {
-		        "masterSecret": "xxxx",
-		        "appKey": "xxxx"
+    		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
 		    },
 		    "ios-test-app": {
-		        "masterSecret": "yyyy",
-		        "appKey": "yyyy"
+    		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
 		    }
 		}
 	}
