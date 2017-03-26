@@ -18,7 +18,6 @@ public struct UAPusherConfig {
     }
     
     public init(config: Config) throws {
-        
         guard let applicationGroups = config["applicationGroups"]?.object else {
             throw Abort.custom(
                 status: .internalServerError,

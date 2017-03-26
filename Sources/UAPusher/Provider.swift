@@ -13,6 +13,13 @@ public final class Provider: Vapor.Provider {
     }
     
     public init(config: Config) throws {
+        guard let config: Config = config["uapusher"] else {
+            throw Abort.custom(
+                status: .internalServerError,
+                message: "UAPusher error - uapusher.json config is missing."
+            )
+        }
+        
         self.config = try UAPusherConfig(config: config)
     }
     
