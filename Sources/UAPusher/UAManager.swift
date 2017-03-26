@@ -1,7 +1,7 @@
 import Vapor
 import HTTP
 
-public final class UAPusher {
+public final class UAManager {
     
     public let config: UAPusherConfig
     public let connectionManager: ConnectionMananger
@@ -11,10 +11,16 @@ public final class UAPusher {
         let uaPusherConfig = try UAPusherConfig(drop: drop)
         let connectionManager = ConnectionMananger(drop: drop, config: uaPusherConfig)
         
-        try self.init(config: uaPusherConfig, connectionMananger: connectionManager, drop: drop)
+        self.init(config: uaPusherConfig, connectionMananger: connectionManager, drop: drop)
     }
     
-    public init(config: UAPusherConfig, connectionMananger: ConnectionMananger, drop: Droplet) throws {
+    public convenience init(uaPusherConfig: UAPusherConfig, drop: Droplet) {
+        let connectionManager = ConnectionMananger(drop: drop, config: uaPusherConfig)
+        
+        self.init(config: uaPusherConfig, connectionMananger: connectionManager, drop: drop)
+    }
+    
+    public init(config: UAPusherConfig, connectionMananger: ConnectionMananger, drop: Droplet) {
         self.config = config
         self.connectionManager = connectionMananger
         self.drop = drop

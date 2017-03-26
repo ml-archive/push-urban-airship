@@ -4,7 +4,7 @@ public struct UAPusherConfig {
     
     var applicationGroups: [ApplicationGroup] = []
     
-    init(drop: Droplet) throws {
+    public init(drop: Droplet) throws {
         
         // Set config
         guard let config: Config = drop.config["uapusher"] else {
@@ -17,7 +17,7 @@ public struct UAPusherConfig {
         try self.init(config: config)
     }
     
-    init(config: Config) throws {
+    public init(config: Config) throws {
         
         guard let applicationGroups = config["applicationGroups"]?.object else {
             throw Abort.custom(
