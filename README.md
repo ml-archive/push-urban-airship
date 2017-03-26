@@ -40,7 +40,7 @@ Init the UAPusher to drop
 ```swift
 import UAPusher
 
-drop.uapusher = try UAPusher(drop: drop)
+try drop.addProvider(UAPusher.Provider.self)
 ```
 
 # Example
@@ -53,15 +53,13 @@ let body = try JSON(node: [
 		"android"
 	],
 	"notification": [
-		"ios": [
-			"alert": "hello world"
-			]
+		"alert": "hello world"
 	]
 ])
         
 let request = UARequest(body: body)
 let response = try drop.uapusher?.send(request: request)
-if response == .accepted {
+if response.status == .accepted {
 	print("Push send..")
 }
 ```

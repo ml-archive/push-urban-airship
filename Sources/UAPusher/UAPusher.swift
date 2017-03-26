@@ -1,5 +1,4 @@
 import Vapor
-import Foundation
 import HTTP
 
 public final class UAPusher {
@@ -21,20 +20,18 @@ public final class UAPusher {
         self.drop = drop
     }
     
-    public func send(request: UARequest) throws -> Status {
+    public func send(request: UARequest) throws -> UAResponse {
         
         //Add more defensive coding here
         
         let responses = try self.connectionManager.post(slug: "/api/push", content: request.getBody())
         
-        for response in responses {
-            
-            if response != .accepted {
-                throw Abort.custom(status: response, message: "UA request was not OK")
-            }
-            
+        let uaResponse = UAResponse(responses: responses)
+        
+        if uaResponse.status != .accepted {
+            throw Abort.custom(status: uaResponse.status, message: "UA request was not OK")
         }
         
-        return .accepted
+        return uaResponse
     }
 }
