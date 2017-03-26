@@ -1,8 +1,41 @@
 # UAPusher
+[![Language](https://img.shields.io/badge/Swift-3-brightgreen.svg)](http://swift.org)
+[![Build Status](https://travis-ci.org/nodes-vapor/push-urban-airship.svg?branch=master)](https://travis-ci.org/nodes-vapor/push-urban-airship)
+[![codecov](https://codecov.io/gh/nodes-vapor/push-urban-airship/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/push-urban-airship)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
 
-In `main.swift` import the UAPusher framework and just instantiate on the droplet.
+# Send push notifications with Urban Airship for Vapor
 
-###Setup
+# Installation
+Update your `Package.swift` file.
+```swift
+.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0, minor: 2)
+```
+
+### Config
+Create config file `uapusher.json` with following syntax
+
+```json
+{
+	"applicationGroups": {
+		"defaultGroup": {
+		    "development": {
+		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
+		    },
+		    "staging": {
+		        "appKey": "yyyy",
+		        "masterSecret": "yyyy"
+		    }
+		}
+	}
+}
+```
+
+You can define multiple apps like in the example. Else just delete one of groups
+
+### main.swift 
+Init the UAPusher to drop
 
 ```swift
 import UAPusher
@@ -10,22 +43,7 @@ import UAPusher
 drop.uapusher = try UAPusher(drop: drop)
 ```
 
-Please add a config file `uapusher.json`
-
-```bash
-{
-    "master_secret": "xxxx",
-    "app_key": "xxxx"
-}
-```
-
-###Test
-
-To test your UA setup is correctly implemented before sending push just call: `let response = try drop.uapusher?.validateUASetup()` any place after you have instantiated UAPusher in `main.swift`
-
-###Sending pushes
-
-Use the following code in your project to send a push (will be updated very soon to have it's own builder and validator)
+# Example
 
 ```swift
 let body = try JSON(node: [
@@ -47,25 +65,7 @@ if response == .accepted {
 	print("Push send..")
 }
 ```
+Check out the api documentation (http://docs.urbanairship.com/api/ua/)
 
-The send can also take a JSON object. We would recommend to use the `UARequest` object instead of this method below. 
-
-```swift
-let body = try JSON(node: [
-	"audience": "all",
-	"device_types": [
-		"ios",
-		"android"
-	],
-	"notification": [
-		"ios": [
-			"alert": "hello world"
-		]
-	]
-])
-        
-let response = try drop.uapusher?.send(request: body)
-	if response == .accepted {
-		print("Push send..")
-}
-```
+# Todo
+ - Make a builder like (https://github.com/nodes-php/push)
