@@ -1,5 +1,6 @@
 import Vapor
 import HTTP
+import Foundation
 
 public final class ConnectionMananger {
     
@@ -44,12 +45,12 @@ public final class ConnectionMananger {
     ///   - content: JSON content
     /// - Returns: array of Status for each request made
     /// - Throws: if POST fails
-    func post(slug: String, content: JSON) throws -> [Status] {
+    func post(slug: String, content: JSON) throws -> [Response] {
         
         let url = baseUrl + slug
         let body = content.makeBody()
         
-        var status: [Status] = []
+        var responses: [Response] = []
         
         for applicationGroup in self.config.applicationGroups {
             
@@ -66,10 +67,10 @@ public final class ConnectionMananger {
                     body: body
                 )
                 
-                status.append(uaResponse.status)
+                responses.append(uaResponse)
             }
         }
         
-        return status
+        return responses
     }
 }
