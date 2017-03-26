@@ -20,11 +20,11 @@ Create config file `uapusher.json` with following syntax
 	"applicationGroups": {
 		"defaultGroup": {
 		    "development": {
-    		        "appKey": "yyyy",
+		        "appKey": "yyyy",
 		        "masterSecret": "yyyy"
 		    },
 		    "staging": {
-    		        "appKey": "yyyy",
+		        "appKey": "yyyy",
 		        "masterSecret": "yyyy"
 		    }
 		}
