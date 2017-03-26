@@ -40,7 +40,7 @@ Init the UAPusher to drop
 ```swift
 import UAPusher
 
-drop.uapusher = try UAPusher(drop: drop)
+try drop.addProvider(UAPusher.Provider.self)
 ```
 
 # Example
