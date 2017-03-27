@@ -2,9 +2,9 @@ import Vapor
 import HTTP
 
 final public class UAResponse {
-    let responses: [Response]
+    public let responses: [Response]
     
-    var status: Status {
+    public var status: Status {
         for response in responses {
             if response.status != .accepted {
                 return response.status
