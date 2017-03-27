@@ -58,9 +58,13 @@ let body = try JSON(node: [
 ])
         
 let request = UARequest(body: body)
-let response = try drop.uapusher?.send(request: request)
-if response.status == .accepted {
-	print("Push send..")
+do {
+	let response = try drop.uapusher?.send(request: request)
+	if response.status == .accepted {
+		print("Push send..")
+	}
+} catch UAError.response(let uaResponse) {
+	//let response = uaResponse.response[0]
 }
 ```
 Check out the api documentation (http://docs.urbanairship.com/api/ua/)
