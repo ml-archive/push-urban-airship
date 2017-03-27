@@ -1,8 +1,8 @@
 import Vapor
 
 extension Droplet {
-    public var uapusher: UAPusher? {
-        get { return storage["uapusher"] as? UAPusher }
+    public var uapusher: UAManager? {
+        get { return storage["uapusher"] as? UAManager }
         set { storage["uapusher"] = newValue }
     }
 }
