@@ -8,9 +8,10 @@ public struct UAPusherConfig {
         
         // Set config
         guard let config: Config = drop.config["uapusher"] else {
-            throw Abort.custom(
-                status: .internalServerError,
-                message: "UAPusher error - uapusher.json config is missing."
+            throw Abort(
+                .internalServerError,
+                metadata: nil,
+                reason: "UAPusher error - uapusher.json config is missing."
             )
         }
         
@@ -19,16 +20,18 @@ public struct UAPusherConfig {
     
     public init(config: Config) throws {
         guard let applicationGroups = config["applicationGroups"]?.object else {
-            throw Abort.custom(
-                status: .internalServerError,
-                message: "UAPusher error - applicationGroups are not set."
+            throw Abort(
+                .internalServerError,
+                metadata: nil,
+                reason: "UAPusher error - applicationGroups are not set."
             )
         }
         
         if (applicationGroups.count < 1){
-            throw Abort.custom(
-                status: .internalServerError,
-                message: "UAPusher error - there are no applicationGroups."
+            throw Abort(
+                .internalServerError,
+                metadata: nil,
+                reason: "UAPusher error - there are no applicationGroups."
             )
         }
         
@@ -38,9 +41,10 @@ public struct UAPusherConfig {
             
             // Try to get the apps inside the  applicationGroup
             guard let applications = applicationGroup.value.object else {
-                throw Abort.custom(
-                    status: .internalServerError,
-                    message: "UAPusher error - applicationGroup is missing applications."
+                throw Abort(
+                    .internalServerError,
+                    metadata: nil,
+                    reason: "UAPusher error - applicationGroup is missing applications."
                 )
             }
             
@@ -49,16 +53,18 @@ public struct UAPusherConfig {
                 let appName = application.key
                 
                 guard let masterSecret = application.value.object?["masterSecret"]?.string else {
-                    throw Abort.custom(
-                        status: .internalServerError,
-                        message: "UAPusher error - application is missing masterSecret."
+                    throw Abort(
+                        .internalServerError,
+                        metadata: nil,
+                        reason: "UAPusher error - application is missing masterSecret."
                     )
                 }
                 
                 guard let appKey = application.value.object?["appKey"]?.string else {
-                    throw Abort.custom(
-                        status: .internalServerError,
-                        message: "UAPusher error - application is missing appKey."
+                    throw Abort(
+                        .internalServerError,
+                        metadata: nil,
+                        reason: "UAPusher error - application is missing appKey."
                     )
                 }
                 

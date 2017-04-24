@@ -60,11 +60,12 @@ public final class ConnectionMananger {
                     appKey: application.appKey,
                     masterSecret: application.masterSecret
                 )
-                
+
                 let uaResponse = try drop.client.post(
                     url,
-                    headers: headers,
-                    body: body
+                    query: [:],
+                    headers,
+                    body
                 )
                 
                 responses.append(uaResponse)
