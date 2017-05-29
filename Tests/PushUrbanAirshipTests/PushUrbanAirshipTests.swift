@@ -1,5 +1,5 @@
 import XCTest
-@testable import PushUrbanAirshipTests
+@testable import UAPusher
 
 class PushUrbanAirshipTests: XCTestCase {
     func test() {
