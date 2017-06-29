@@ -16,7 +16,7 @@ Send push notifications with Urban Airship for Vapor
 
 Update your `Package.swift` file.
 ```swift
-.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 0, minor: 2)
+.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 1)
 ```
 
 ### Config
