@@ -1,5 +1,5 @@
 import XCTest
-@testable import PushUrbanAirshipTests
+@testable import UAPusherTests
 
 XCTMain([
      testCase(PushUrbanAirshipTests.allTests),
