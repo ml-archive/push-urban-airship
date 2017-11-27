@@ -10,7 +10,7 @@ final public class UAResponse {
         for response in responses {
             if response.status != .accepted {
                 responses.forEach { response in
-                    print(response.body)
+                    print(response.makeResponse())
                 }
                 
                 return response.status

@@ -9,7 +9,8 @@ public final class Audience {
     /// Audience representation
     var audience: JSON
     
-    // MARK: Standard values
+    // MARK: Predefined values
+    
     public enum predefined {
         case all
         
