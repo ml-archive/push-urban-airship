@@ -31,6 +31,15 @@ public final class Audience: BuildingBlock {
         self.audience = json
     }
     
+    /// Init from string for tagged (targeted) push
+    ///
+    /// - Parameter tag: String
+    init(tag: String) {
+        self.audience = JSON([
+            "tag": JSON(tag)
+        ])
+    }
+    
     // MARK: Payload
     
     /// Get the payload

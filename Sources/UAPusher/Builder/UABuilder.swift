@@ -7,6 +7,7 @@ public final class UABuilder {
     
     var audiencePayload: Audience?
     var deviceTypesPayload: DeviceTypes?
+    var notificationPayload: Notification?
     
     // MARK: Initializers
     
@@ -28,6 +29,7 @@ public final class UABuilder {
     ///
     /// - Parameter predefined: Audience.predefined
     /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
     public func audience(predefined: Audience.Predefined) throws -> UABuilder {
         self.audiencePayload = try Audience(predefined: predefined)
         return self
@@ -48,6 +50,7 @@ public final class UABuilder {
     ///
     /// - Parameter predefined: DevideTypes.predefined
     /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
     public func deviceTypes(predefined: DeviceTypes.Predefined) throws -> UABuilder {
         self.deviceTypesPayload = try DeviceTypes(predefined: predefined)
         return self
@@ -59,6 +62,36 @@ public final class UABuilder {
     /// - Returns: UABuilder
     public func deviceTypes(compound: [DeviceTypes.Predefined]) -> UABuilder {
         self.deviceTypesPayload = DeviceTypes(compound: compound)
+        return self
+    }
+    
+    // MARK: Notification
+    
+    /// Set notification from a JSON object
+    ///
+    /// - Parameter notification: JSON
+    /// - Returns: UABuilder
+    public func notification(notification: JSON) -> UABuilder {
+        self.notificationPayload = Notification(json: notification)
+        return self
+    }
+    
+    /// Set notification from a predefined value
+    ///
+    /// - Parameter predefined: Notification.predefined
+    /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
+    public func notification(predefined: Notification.Predefined) throws -> UABuilder {
+        self.notificationPayload = try Notification(predefined: predefined)
+        return self
+    }
+    
+    /// Set notification using alert String
+    ///
+    /// - Parameter alert: String
+    /// - Returns: UABuilder
+    public func notification(alert: String) -> UABuilder {
+        self.notificationPayload = Notification.init(alert: alert)
         return self
     }
     
@@ -77,6 +110,10 @@ public final class UABuilder {
         
         if let unwrappedDeviceTypes: DeviceTypes = deviceTypesPayload {
             try body.set("device_types", unwrappedDeviceTypes.payload())
+        }
+        
+        if let unwrappedNotification: Notification = notificationPayload {
+            try body.set("notification", unwrappedNotification.payload())
         }
         
         return body

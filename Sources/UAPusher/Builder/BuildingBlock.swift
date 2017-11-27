@@ -1,5 +1,7 @@
 import JSON
 
+/// Protocol for the elements that makes up a complete
+/// payload for an Urban airship request
 protocol BuildingBlock {
     associatedtype Predefined: JSONRepresentable
     init(json: JSON)
