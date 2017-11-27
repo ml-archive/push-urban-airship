@@ -21,18 +21,18 @@ Create config file `uapusher.json` with following syntax
 
 ```json
 {
-	"applicationGroups": {
-		"defaultGroup": {
-		    "development": {
-		        "appKey": "yyyy",
-		        "masterSecret": "yyyy"
-		    },
-		    "staging": {
-		        "appKey": "yyyy",
-		        "masterSecret": "yyyy"
-		    }
-		}
-	}
+    "applicationGroups": {
+        "defaultGroup": {
+            "development": {
+                "appKey": "yyyy",
+                "masterSecret": "yyyy"
+            },
+            "staging": {
+                "appKey": "yyyy",
+                "masterSecret": "yyyy"
+            }
+        }
+    }
 }
 ```
 
@@ -50,24 +50,24 @@ try drop.addProvider(UAPusher.Provider.self)
 ### Simple example
 ```swift
 let body = try JSON(node: [
-	"audience": "all",
-	"device_types": [
-		"ios"
-	],
-	"notification": [
-		"alert": "hello world"
-	]
+    "audience": "all",
+    "device_types": [
+        "ios"
+    ],
+    "notification": [
+        "alert": "hello world"
+    ]
 ])
         
 let request = UARequest(body: body)
 
 do {
-	let response = try drop.uapusher?.send(request: request)
-	if response.status == .accepted {
-		print("Push send..")
-	}
+    let response = try drop.uapusher?.send(request: request)
+    if response.status == .accepted {
+        print("Push send..")
+    }
 } catch UAError.response(let uaResponse) {
-	// let response = uaResponse.response[0]
+    // let response = uaResponse.response[0]
 }
 ```
 
