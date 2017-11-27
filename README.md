@@ -71,6 +71,8 @@ do {
 }
 ```
 
+The above example will send a text push notification with the message `hello world` to all users on the `ios` platforms
+
 ### Chain your payload
 This package offers a way to easily customize they different segments of the final payload sent to Urban Airship, using the UABuilder class.
 
