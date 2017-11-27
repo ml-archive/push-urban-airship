@@ -35,6 +35,15 @@ public final class UABuilder {
         return self
     }
     
+    /// Set audience from a tag-string
+    ///
+    /// - Parameter tag: String
+    /// - Returns: UABuilder
+    public func audience(tag: String) -> UABuilder {
+        self.audiencePayload = Audience(tag: tag)
+        return self
+    }
+    
     // MARK: DeviceTypes
     
     /// Set device types from JSON object

@@ -1,4 +1,6 @@
 # UAPusher
+Send push notification payloads to Urban Airship from your server using Vapor.
+
 [![Swift Version](https://img.shields.io/badge/Swift-3.1-brightgreen.svg)](http://swift.org)
 [![Vapor Version](https://img.shields.io/badge/Vapor-2-F6CBCA.svg)](http://vapor.codes)
 [![Linux Build Status](https://img.shields.io/circleci/project/github/nodes-vapor/push-urban-airship.svg?label=Linux)](https://circleci.com/gh/nodes-vapor/push-urban-airship)
@@ -8,19 +10,13 @@
 [![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nodes-vapor/push-urban-airship)](http://clayallsopp.github.io/readme-score?url=https://github.com/nodes-vapor/push-urban-airship)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
 
-
-Send push notifications with Urban Airship for Vapor
-
-
 ## 📦 Installation
-
 Update your `Package.swift` file.
 ```swift
 .Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 1)
 ```
 
 ### Config
-
 Create config file `uapusher.json` with following syntax
 
 ```json
@@ -42,7 +38,6 @@ Create config file `uapusher.json` with following syntax
 
 You can define multiple apps like in the example. Else just delete one of groups
 
-
 ## Getting started 🚀
 Init the UAPusher to drop
 
@@ -52,14 +47,12 @@ import UAPusher
 try drop.addProvider(UAPusher.Provider.self)
 ```
 
-### Example
-
+### Simple example
 ```swift
 let body = try JSON(node: [
 	"audience": "all",
 	"device_types": [
-		"ios",
-		"android"
+		"ios"
 	],
 	"notification": [
 		"alert": "hello world"
@@ -67,24 +60,40 @@ let body = try JSON(node: [
 ])
         
 let request = UARequest(body: body)
+
 do {
 	let response = try drop.uapusher?.send(request: request)
 	if response.status == .accepted {
 		print("Push send..")
 	}
 } catch UAError.response(let uaResponse) {
-	//let response = uaResponse.response[0]
+	// let response = uaResponse.response[0]
 }
 ```
-Check out the api documentation (http://docs.urbanairship.com/api/ua/)
 
+### Chain your payload
+This package offers a way to easily customize they different segments of the final payload sent to Urban Airship, using the UABuilder class.
+
+```swift
+...
+let builder = UABuilder()
+
+_ = try builder
+    .audience(tag: "tagged_targets")
+    .deviceTypes(compound: [.ios, .android])
+    .notification(alert: "Some informative push message text")
+
+let request: UARequest = UARequest(body: try builder.makeBody())
+...
+```
+
+The above example will send a text push notification with the message `Some informative push message text` to all users subscribing to tag `tagged_targets` on the `ios` and `android` platforms
+
+UABuilder currently lets you set `audience`, `device_type` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/)
 
 ## 🏆 Credits
-
 This package is developed and maintained by the Vapor team at [Nodes](https://www.nodesagency.com).
 The package owner for this project is [Rasmus](https://github.com/rasmusebbesen).
 
-
 ## 📄 License
-
 This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
