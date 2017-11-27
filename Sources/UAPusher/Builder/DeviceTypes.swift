@@ -2,7 +2,7 @@ import JSON
 
 /// Device type segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/integration/#device-types
-public final class DeviceTypes {
+public final class DeviceTypes: BuildingBlock {
     // MARK: Class fields
     
     /// Device types representation
@@ -10,14 +10,14 @@ public final class DeviceTypes {
     
     // MARK: Predefined values
     
-    public enum predefined {
+    public enum Predefined: JSONRepresentable {
         case all
         case ios
         case android
         case windows
         case web
         
-        var json: JSON {
+        public func makeJSON() -> JSON {
             switch self {
             case .all:
                 return "all"
@@ -38,29 +38,21 @@ public final class DeviceTypes {
     /// Init from JSON
     ///
     /// - Parameter deviceTypes: JSON
-    init(deviceTypes: JSON) {
-        self.deviceTypes = deviceTypes
-    }
-    
-    
-    /// Init from predefined enum
-    ///
-    /// - Parameter predefined: predefined
-    convenience init(predefined: predefined) {
-        self.init(deviceTypes: predefined.json)
+    init(json: JSON) {
+        self.deviceTypes = json
     }
     
     /// Init from list of predefined values
     ///
-    /// - Parameter compound: [predefined]]
-    convenience init(compound: [predefined]) {
+    /// - Parameter compound: [Predefined]
+    convenience init(compound: [Predefined]) {
         var compoundJson: [JSON] = []
         
         for predefined in compound {
-            compoundJson.append(predefined.json)
+            compoundJson.append(predefined.makeJSON())
         }
         
-        self.init(deviceTypes: JSON(compoundJson))
+        self.init(json: JSON(compoundJson))
     }
     
     // MARK: Payload

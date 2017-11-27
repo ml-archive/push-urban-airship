@@ -1,8 +1,8 @@
-import Vapor
+import JSON
 
 /// Audience segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#audience-selectors
-public final class Audience {
+public final class Audience: BuildingBlock {
     
     // MARK: Class fields
     
@@ -11,10 +11,10 @@ public final class Audience {
     
     // MARK: Predefined values
     
-    public enum predefined {
+    public enum Predefined: JSONRepresentable {
         case all
         
-        var json: JSON {
+        public func makeJSON() throws -> JSON {
             switch self {
             case .all:
                 return "all"
@@ -27,15 +27,8 @@ public final class Audience {
     /// Init from JSON
     ///
     /// - Parameter audience: JSON
-    init(audience: JSON) {
-        self.audience = audience
-    }
-    
-    /// Init from predefined enum
-    ///
-    /// - Parameter val: predefined
-    convenience init(predefined: predefined) {
-        self.init(audience: predefined.json)
+    init(json: JSON) {
+        self.audience = json
     }
     
     // MARK: Payload

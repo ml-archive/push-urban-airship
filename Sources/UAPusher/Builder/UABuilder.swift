@@ -20,7 +20,7 @@ public final class UABuilder {
     /// - Parameter audience: JSON
     /// - Returns: UABuilder
     public func audience(audience: JSON) -> UABuilder {
-        self.audiencePayload = Audience(audience: audience)
+        self.audiencePayload = Audience(json: audience)
         return self
     }
     
@@ -28,8 +28,8 @@ public final class UABuilder {
     ///
     /// - Parameter predefined: Audience.predefined
     /// - Returns: UABuilder
-    public func audience(predefined: Audience.predefined) -> UABuilder {
-        self.audiencePayload = Audience(predefined: predefined)
+    public func audience(predefined: Audience.Predefined) throws -> UABuilder {
+        self.audiencePayload = try Audience(predefined: predefined)
         return self
     }
     
@@ -40,7 +40,7 @@ public final class UABuilder {
     /// - Parameter deviceTypes: JSON
     /// - Returns: UABuilder
     public func deviceTypes(deviceTypes: JSON) -> UABuilder {
-        self.deviceTypesPayload = DeviceTypes(deviceTypes: deviceTypes)
+        self.deviceTypesPayload = DeviceTypes(json: deviceTypes)
         return self
     }
     
@@ -48,8 +48,8 @@ public final class UABuilder {
     ///
     /// - Parameter predefined: DevideTypes.predefined
     /// - Returns: UABuilder
-    public func deviceTypes(predefined: DeviceTypes.predefined) -> UABuilder {
-        self.deviceTypesPayload = DeviceTypes(predefined: predefined)
+    public func deviceTypes(predefined: DeviceTypes.Predefined) throws -> UABuilder {
+        self.deviceTypesPayload = try DeviceTypes(predefined: predefined)
         return self
     }
     
@@ -57,7 +57,7 @@ public final class UABuilder {
     ///
     /// - Parameter compound: [DeviceTypes.predefined]
     /// - Returns: UABuilder
-    public func deviceTypes(compound: [DeviceTypes.predefined]) -> UABuilder {
+    public func deviceTypes(compound: [DeviceTypes.Predefined]) -> UABuilder {
         self.deviceTypesPayload = DeviceTypes(compound: compound)
         return self
     }
@@ -67,7 +67,7 @@ public final class UABuilder {
     /// Build the payload
     ///
     /// - Returns: JSON
-    /// - Throws: <#throws value description#>
+    /// - Throws: In case of invalid JSON
     public func makeBody() throws -> JSON {
         var body: JSON = JSON()
         
