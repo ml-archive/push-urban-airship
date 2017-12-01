@@ -6,7 +6,7 @@ public final class DeviceTypes: BuildingBlock {
     // MARK: Class fields
     
     /// Device types representation
-    var deviceTypes: JSON
+    var payload: JSON
     
     // MARK: Predefined values
     
@@ -37,9 +37,9 @@ public final class DeviceTypes: BuildingBlock {
     
     /// Init from JSON
     ///
-    /// - Parameter deviceTypes: JSON
-    init(json: JSON) {
-        self.deviceTypes = json
+    /// - Parameter payload: JSON
+    init(payload: JSON) {
+        self.payload = payload
     }
     
     /// Init from list of predefined values
@@ -52,15 +52,7 @@ public final class DeviceTypes: BuildingBlock {
             compoundJson.append(predefined.makeJSON())
         }
         
-        self.init(json: JSON(compoundJson))
+        self.init(payload: JSON(compoundJson))
     }
-    
-    // MARK: Payload
-    
-    /// Get the payload
-    ///
-    /// - Returns: JSON
-    func payload() -> JSON {
-        return self.deviceTypes
-    }
+
 }

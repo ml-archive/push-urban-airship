@@ -6,7 +6,7 @@ public final class Notification: BuildingBlock {
     // MARK: Class fields
     
     /// Notification representation
-    var notification: JSON
+    var payload: JSON
     
     // MARK: Predefined values
     
@@ -27,26 +27,18 @@ public final class Notification: BuildingBlock {
     
     /// Init from JSON
     ///
-    /// - Parameter deviceTypes: JSON
-    init(json: JSON) {
-        self.notification = json
+    /// - Parameter payload: JSON
+    init(payload: JSON) {
+        self.payload = payload
     }
     
     /// Init from alert string
     ///
     /// - Parameter alert: String
-    init(alert: String) {
-        self.notification = JSON([
+    convenience init(alert: String) {
+        self.init(payload: JSON([
             "alert": JSON(alert)
-        ])
+        ]))
     }
-    
-    // MARK: Payload
-    
-    /// Get the payload
-    ///
-    /// - Returns: JSON
-    func payload() -> JSON {
-        return self.notification
-    }
+
 }

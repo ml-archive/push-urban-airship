@@ -4,12 +4,12 @@ import JSON
 /// payload for an Urban airship request
 protocol BuildingBlock {
     associatedtype Predefined: JSONRepresentable
-    init(json: JSON)
-    func payload() -> JSON
+    init(payload: JSON)
+    var payload: JSON { get }
 }
 
 extension BuildingBlock {
     init(predefined: Predefined) throws {
-        try self.init(json: predefined.makeJSON())
+        try self.init(payload: predefined.makeJSON())
     }
 }

@@ -7,7 +7,7 @@ public final class Audience: BuildingBlock {
     // MARK: Class fields
     
     /// Audience representation
-    var audience: JSON
+    var payload: JSON
     
     // MARK: Predefined values
     
@@ -26,26 +26,18 @@ public final class Audience: BuildingBlock {
     
     /// Init from JSON
     ///
-    /// - Parameter audience: JSON
-    init(json: JSON) {
-        self.audience = json
+    /// - Parameter payload: JSON
+    init(payload: JSON) {
+        self.payload = payload
     }
     
     /// Init from string for tagged (targeted) push
     ///
     /// - Parameter tag: String
-    init(tag: String) {
-        self.audience = JSON([
+    convenience init(tag: String) {
+        self.init(payload: JSON([
             "tag": JSON(tag)
-        ])
+        ]))
     }
-    
-    // MARK: Payload
-    
-    /// Get the payload
-    ///
-    /// - Returns: JSON
-    func payload() -> JSON {
-        return self.audience
-    }
+
 }

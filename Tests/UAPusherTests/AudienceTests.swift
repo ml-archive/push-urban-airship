@@ -9,14 +9,14 @@ class AudienceTests: XCTestCase {
             "static_list": "subscriptions"
         ])
     
-        let audience = Audience(json: audienceJson)
-        XCTAssertEqual(audience.payload(), audienceJson)
+        let audience = Audience(payload: audienceJson)
+        XCTAssertEqual(audience.payload, audienceJson)
     }
     
     func testAudienceInitFromPredefined() throws {
         let expected: JSON = JSON("all")
         let audience = try Audience(predefined: .all)
-        XCTAssertEqual(audience.payload(), expected)
+        XCTAssertEqual(audience.payload, expected)
     }
     
     func testAudienceInitFromTag() {
@@ -27,7 +27,7 @@ class AudienceTests: XCTestCase {
         ])
         
         let audience = Audience(tag: tag)
-        XCTAssertEqual(audience.payload(), expected)
+        XCTAssertEqual(audience.payload, expected)
     }
     
 }

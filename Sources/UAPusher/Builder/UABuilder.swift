@@ -8,6 +8,7 @@ public final class UABuilder {
     var audiencePayload: Audience?
     var deviceTypesPayload: DeviceTypes?
     var notificationPayload: Notification?
+    var optionsPayload: Options?
     
     // MARK: Initializers
     
@@ -21,7 +22,7 @@ public final class UABuilder {
     /// - Parameter audience: JSON
     /// - Returns: UABuilder
     public func audience(audience: JSON) -> UABuilder {
-        self.audiencePayload = Audience(json: audience)
+        self.audiencePayload = Audience(payload: audience)
         return self
     }
     
@@ -51,7 +52,7 @@ public final class UABuilder {
     /// - Parameter deviceTypes: JSON
     /// - Returns: UABuilder
     public func deviceTypes(deviceTypes: JSON) -> UABuilder {
-        self.deviceTypesPayload = DeviceTypes(json: deviceTypes)
+        self.deviceTypesPayload = DeviceTypes(payload: deviceTypes)
         return self
     }
     
@@ -81,7 +82,7 @@ public final class UABuilder {
     /// - Parameter notification: JSON
     /// - Returns: UABuilder
     public func notification(notification: JSON) -> UABuilder {
-        self.notificationPayload = Notification(json: notification)
+        self.notificationPayload = Notification(payload: notification)
         return self
     }
     
@@ -104,6 +105,27 @@ public final class UABuilder {
         return self
     }
     
+    // MARK: Options
+    
+    /// Set options from a JSON object
+    ///
+    /// - Parameter options: JSON
+    /// - Returns: UABuilder
+    public func options(options: JSON) -> UABuilder {
+        self.optionsPayload = Options(payload: options)
+        return self
+    }
+    
+    /// Set options from a predefined value
+    ///
+    /// - Parameter predefined: Options.Predefined
+    /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
+    public func options(predefined: Options.Predefined) throws -> UABuilder {
+        self.optionsPayload = try Options(predefined: predefined)
+        return self
+    }
+    
     // MARK: Build
     
     /// Build the payload
@@ -114,18 +136,27 @@ public final class UABuilder {
         var body: JSON = JSON()
         
         if let unwrappedAudience: Audience = audiencePayload {
-            try body.set("audience", unwrappedAudience.payload())
+            try body.set("audience", unwrappedAudience.payload)
         }
         
         if let unwrappedDeviceTypes: DeviceTypes = deviceTypesPayload {
-            try body.set("device_types", unwrappedDeviceTypes.payload())
+            try body.set("device_types", unwrappedDeviceTypes.payload)
         }
         
         if let unwrappedNotification: Notification = notificationPayload {
-            try body.set("notification", unwrappedNotification.payload())
+            try body.set("notification", unwrappedNotification.payload)
+        }
+        
+        if let unwrappedOptions: Options = optionsPayload {
+            try body.set("options", unwrappedOptions.payload)
         }
         
         return body
+    }
+    
+    // MARK: Send request
+    public func send() {
+        
     }
     
 }

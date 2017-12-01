@@ -9,8 +9,8 @@ class NotificationTests: XCTestCase {
             "alert": "This is a push notification"
         ])
         
-        let notification = Notification(json: notificationJson)
-        XCTAssertEqual(notification.payload(), notificationJson)
+        let notification = Notification(payload: notificationJson)
+        XCTAssertEqual(notification.payload, notificationJson)
     }
     
     func testNotificationInitFromPredefined() throws {
@@ -18,7 +18,7 @@ class NotificationTests: XCTestCase {
             "alert": "This is a test push notification, from nodes-vapor/push-urban-airship"
         ])
         let notification = try Notification(predefined: .testAlert)
-        XCTAssertEqual(notification.payload(), expected)
+        XCTAssertEqual(notification.payload, expected)
     }
     
     func testNotificationInitFromAlert() {
@@ -28,7 +28,7 @@ class NotificationTests: XCTestCase {
         ])
         
         let notification = Notification(alert: alert)
-        XCTAssertEqual(notification.payload(), expected)
+        XCTAssertEqual(notification.payload, expected)
     }
     
 }
