@@ -9,6 +9,8 @@ public final class UABuilder {
     var deviceTypesPayload: DeviceTypes?
     var notificationPayload: Notification?
     var optionsPayload: Options?
+    var inAppPayload: InApp?
+    var messagePayload: Message?
     
     // MARK: Initializers
     
@@ -126,6 +128,44 @@ public final class UABuilder {
         return self
     }
     
+    /// Set in_app from a JSON object
+    ///
+    /// - Parameter inApp: JSON
+    /// - Returns: UABuilder
+    public func inApp(inApp: JSON) -> UABuilder {
+        self.inAppPayload = InApp(payload: inApp)
+        return self
+    }
+    
+    /// Set in_app from a predefined value
+    ///
+    /// - Parameter predefined: InApp.Predefined
+    /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
+    public func inApp(predefined: InApp.Predefined) throws -> UABuilder {
+        self.inAppPayload = try InApp(predefined: predefined)
+        return self
+    }
+    
+    /// Set message from a JSON object
+    ///
+    /// - Parameter message: JSON
+    /// - Returns: UABuilder
+    public func message(message: JSON) -> UABuilder {
+        self.messagePayload = Message(payload: message)
+        return self
+    }
+    
+    /// Set message from a predefined value
+    ///
+    /// - Parameter predefined: InApp.Predefined
+    /// - Returns: UABuilder
+    /// - Throws: In case of invalid JSON
+    public func message(predefined: Message.Predefined) throws -> UABuilder {
+        self.messagePayload = try Message(predefined: predefined)
+        return self
+    }
+    
     // MARK: Build
     
     /// Build the payload
@@ -151,12 +191,15 @@ public final class UABuilder {
             try body.set("options", unwrappedOptions.payload)
         }
         
-        return body
-    }
-    
-    // MARK: Send request
-    public func send() {
+        if let unwrappedInApp: InApp = inAppPayload {
+            try body.set("in_app", unwrappedInApp.payload)
+        }
         
+        if let unwrappedMessage: Message = messagePayload {
+            try body.set("message", unwrappedMessage.payload)
+        }
+        
+        return body
     }
     
 }

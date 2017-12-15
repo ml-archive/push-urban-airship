@@ -1,6 +1,6 @@
 import JSON
 
-/// Device type segment of an Urban Airship push notification payload
+/// Notification segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/integration/#notfication-payload
 public final class Notification: BuildingBlock {
     // MARK: Class fields

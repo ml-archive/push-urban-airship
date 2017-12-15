@@ -63,7 +63,7 @@ class OptionsTests: XCTestCase {
         let expiryDate = Date(timeIntervalSinceNow: 31536000)
         let expected: JSON = JSON([
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
-            ])
+        ])
         
         let options: Options = try Options(predefined: .expireInOneYear)
         

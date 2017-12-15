@@ -4,7 +4,7 @@ import JSON
 
 class AudienceTests: XCTestCase {
     
-    func TestAudienceInitFromJSON() {
+    func testAudienceInitFromJSON() {
         let audienceJson: JSON = JSON([
             "static_list": "subscriptions"
         ])

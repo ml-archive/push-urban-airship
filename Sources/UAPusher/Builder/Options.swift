@@ -1,6 +1,8 @@
 import JSON
 import Foundation
 
+/// Options segment of an Urban Airship push notification payload
+/// See: https://docs.urbanairship.com/api/ua/#push-options
 public final class Options: BuildingBlock {
     // MARK: Class fields
     
