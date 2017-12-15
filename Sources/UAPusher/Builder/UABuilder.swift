@@ -11,6 +11,7 @@ public final class UABuilder {
     var optionsPayload: Options?
     var inAppPayload: InApp?
     var messagePayload: Message?
+    var campaignsPayload: Campaigns?
     
     // MARK: Initializers
     
@@ -128,6 +129,8 @@ public final class UABuilder {
         return self
     }
     
+    // MARK: InApp
+    
     /// Set in_app from a JSON object
     ///
     /// - Parameter inApp: JSON
@@ -147,6 +150,8 @@ public final class UABuilder {
         return self
     }
     
+    // MARK: Message
+    
     /// Set message from a JSON object
     ///
     /// - Parameter message: JSON
@@ -163,6 +168,37 @@ public final class UABuilder {
     /// - Throws: In case of invalid JSON
     public func message(predefined: Message.Predefined) throws -> UABuilder {
         self.messagePayload = try Message(predefined: predefined)
+        return self
+    }
+    
+    // MARK: Campaigns
+    
+    /// Set campaigns from a JSON object
+    ///
+    /// - Parameter campaigns: JSON
+    /// - Returns: UABuilder
+    public func campaigns(campaigns: JSON) -> UABuilder {
+        self.campaignsPayload = Campaigns(payload: campaigns)
+        return self
+    }
+    
+    /// Set campaigns from a predefined value
+    ///
+    /// - Parameter predefined: Campaign.Predefined
+    /// - Returns: UABuilder
+    /// - Throws: In case of invalid json
+    public func campaigns(predefined: Campaigns.Predefined) throws -> UABuilder {
+        self.campaignsPayload = try Campaigns(predefined: predefined)
+        return self
+    }
+    
+    /// Set campaigns from a list of categories
+    ///
+    /// - Parameter categories: [String]
+    /// - Returns: UABuilder
+    /// - Throws: In case campaig json cannot be created
+    public func campaigns(categories: [String]) throws -> UABuilder {
+        self.campaignsPayload = try Campaigns(categories: categories)
         return self
     }
     
@@ -197,6 +233,10 @@ public final class UABuilder {
         
         if let unwrappedMessage: Message = messagePayload {
             try body.set("message", unwrappedMessage.payload)
+        }
+        
+        if let unwrappedCampaigns: Campaigns = campaignsPayload {
+            try body.set("campaigns", unwrappedCampaigns.payload)
         }
         
         return body
