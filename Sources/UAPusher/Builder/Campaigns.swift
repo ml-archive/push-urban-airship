@@ -3,28 +3,24 @@ import JSON
 
 /// Campaigns segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#campaigns-object
-public final class Campaigns: BuildingBlock {
+struct Campaigns: Segment {
     
     // MARK: Class fields
     
-    /// Campaign representation
+    let key: String = "campaigns"
     var payload: JSON
     
-    // MARK: Predefined values
+    // MARK: Selector values
     
-    public enum Predefined: JSONRepresentable {
-        case test
+    public enum Selector: JSONRepresentable {
+        case categories(values: [String])
         
         public func makeJSON() throws -> JSON {
             switch self {
-            case .test:
-                return JSON([
-                    "categories": [
-                        "kittens",
-                        "tacos",
-                        "horse_racing"
-                    ]
-                ])
+            case .categories(let values):
+                var json: JSON = JSON()
+                try json.set("categories", values)
+                return json
             }
         }
     }
@@ -38,14 +34,11 @@ public final class Campaigns: BuildingBlock {
         self.payload = payload
     }
     
-    
-    /// Init from a list of custom categories
+    /// Init from Selector
     ///
-    /// - Parameter categories: An a array of strings
-    /// - Throws: In case json cannot be created
-    convenience init(categories: [String]) throws {
-        var json = JSON()
-        try json.set("categories", categories)
-        self.init(payload: json)
+    /// - Parameter selector: Selector
+    init(_ selector: Selector) throws {
+        try self.payload = selector.makeJSON()
     }
+    
 }

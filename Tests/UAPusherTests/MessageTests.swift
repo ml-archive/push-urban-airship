@@ -15,14 +15,5 @@ class MessageTests: XCTestCase {
         let message: Message = Message(payload: messageJson)
         XCTAssertEqual(message.payload, messageJson)
     }
-    
-    func testMessageInitFromPredefined() throws {
-        let expected: JSON = JSON([
-            "title": "This is a test",
-            "body": "This is a test message sent from UAPusher",
-            "content_type": "text/html"
-        ])
-        let message = try Message(predefined: .test)
-        XCTAssertEqual(message.payload, expected)
-    }
+
 }

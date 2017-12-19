@@ -5,31 +5,12 @@ import JSON
 /// See: https://docs.urbanairship.com/api/ua/#rich-push-api
 /// NB: This requires a special plan at UA.
 /// See: https://www.urbanairship.com/products/mobile-app-engagement/pricing
-public final class Message: BuildingBlock {
+struct Message: Segment {
+    
     // MARK: Class fields
     
-    /// Message representation
+    let key: String = "message"
     var payload: JSON
-    
-    // MARK: Predefined values
-    
-    public enum Predefined: JSONRepresentable {
-        
-        case test
-        
-        public func makeJSON() throws -> JSON {
-            
-            switch self {
-            case .test:
-                return JSON([
-                    "title": "This is a test",
-                    "body": "This is a test message sent from UAPusher",
-                    "content_type": "text/html"
-                ])
-            }
-        }
-        
-    }
     
     // MARK: Initializers
     

@@ -2,15 +2,15 @@ import JSON
 
 /// Device type segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/integration/#device-types
-public final class DeviceTypes: BuildingBlock {
+struct DeviceTypes: Segment {
     // MARK: Class fields
     
-    /// Device types representation
+    let key: String = "device_types"
     var payload: JSON
     
     // MARK: Predefined values
     
-    public enum Predefined: JSONRepresentable {
+    public enum Selector: JSONRepresentable {
         case all
         case ios
         case android
@@ -42,14 +42,21 @@ public final class DeviceTypes: BuildingBlock {
         self.payload = payload
     }
     
+    /// Init from Selector
+    ///
+    /// - Parameter selector: Selector
+    init(_ selector: Selector) throws {
+        self.payload = selector.makeJSON()
+    }
+    
     /// Init from list of predefined values
     ///
-    /// - Parameter compound: [Predefined]
-    convenience init(compound: [Predefined]) {
+    /// - Parameter selectors: [Selector]
+    init(_ selectors: [Selector]) {
         var compoundJson: [JSON] = []
         
-        for predefined in compound {
-            compoundJson.append(predefined.makeJSON())
+        for selector in selectors {
+            compoundJson.append(selector.makeJSON())
         }
         
         self.init(payload: JSON(compoundJson))

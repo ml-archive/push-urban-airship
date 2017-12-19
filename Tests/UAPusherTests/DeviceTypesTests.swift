@@ -12,37 +12,37 @@ class DeviceTypesTests: XCTestCase {
     
     func testDeviceTypesInitFromPredefinedAll() throws {
         let expected: JSON = JSON("all")
-        let deviceTypes = try DeviceTypes(predefined: .all)
+        let deviceTypes = try DeviceTypes(.all)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedIos() throws {
         let expected: JSON = JSON("ios")
-        let deviceTypes = try DeviceTypes(predefined: .ios)
+        let deviceTypes = try DeviceTypes(.ios)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedAndroid() throws {
         let expected: JSON = JSON("android")
-        let deviceTypes = try DeviceTypes(predefined: .android)
+        let deviceTypes = try DeviceTypes(.android)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedWindowsPhone() throws {
         let expected: JSON = JSON("wns")
-        let deviceTypes = try DeviceTypes(predefined: .windows)
+        let deviceTypes = try DeviceTypes(.windows)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedWeb() throws {
         let expected: JSON = JSON("web")
-        let deviceTypes = try DeviceTypes(predefined: .web)
+        let deviceTypes = try DeviceTypes(.web)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromCompoundPredefined() {
         let expected: JSON = JSON(["ios", "android", "web"])
-        let deviceTypes = DeviceTypes(compound: [.ios, .android, .web])
+        let deviceTypes = DeviceTypes([.ios, .android, .web])
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     

@@ -17,30 +17,13 @@ class CampaignsTest: XCTestCase {
         XCTAssertEqual(campaigns.payload, campaignJson)
     }
     
-    func testCampaingsInitFromPredefined() throws {
-        let expected: JSON = JSON([
-            "categories": [
-                "kittens",
-                "tacos",
-                "horse_racing"
-            ]
-        ])
+    func testCampaingsInitFromCategories() throws {
+        let categories = ["kittens", "tacos", "horse_racing"]
+        var expected: JSON = JSON()
+        try expected.set("categories", categories)
         
-        let campaigns: Campaigns = try Campaigns(predefined: .test)
+        let campaigns: Campaigns = try Campaigns(.categories(values: categories))
         XCTAssertEqual(campaigns.payload, expected)
     }
     
-    func testCampaignsInitFromStringList() throws {
-        let list: [String] = [
-            "cars",
-            "boats",
-            "bikes"
-        ]
-        
-        var expected: JSON = JSON()
-        try expected.set("categories", list)
-        
-        let campaigns: Campaigns = try Campaigns(categories: list)
-        XCTAssertEqual(campaigns.payload, expected)
-    }
 }

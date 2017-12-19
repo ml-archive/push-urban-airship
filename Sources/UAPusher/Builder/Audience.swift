@@ -2,22 +2,42 @@ import JSON
 
 /// Audience segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#audience-selectors
-public final class Audience: BuildingBlock {
+struct Audience: Segment {
     
     // MARK: Class fields
     
-    /// Audience representation
-    var payload: JSON
+    let key: String = "audience"
+    let payload: JSON
     
-    // MARK: Predefined values
-    
-    public enum Predefined: JSONRepresentable {
+    enum Selector: JSONRepresentable {
         case all
+        case tag(value: String)
+        case tags(values: [String])
+        case namedUser(value: String)
+        case alias(value: String)
         
-        public func makeJSON() throws -> JSON {
+        func makeJSON() throws -> JSON {
             switch self {
             case .all:
                 return "all"
+            case .tag(let value):
+                var json: JSON = JSON()
+                try json.set("tag", value)
+                return json
+            case .tags(let values):
+                var json: JSON = JSON()
+                try json.set("tag", values)
+                return json
+            case .namedUser(let value):
+                var json: JSON = JSON()
+                try json.set("named_user", value)
+                return json
+            case .alias(let value):
+                print("\"alias\" is deprecated. Use \"named_user\" instead")
+                print("See https://docs.urbanairship.com/api/ua/#data-formats-1 for more info")
+                var json: JSON = JSON()
+                try json.set("named_user", value)
+                return json
             }
         }
     }
@@ -31,13 +51,11 @@ public final class Audience: BuildingBlock {
         self.payload = payload
     }
     
-    /// Init from string for tagged (targeted) push
+    /// Init from Selector
     ///
-    /// - Parameter tag: String
-    convenience init(tag: String) {
-        self.init(payload: JSON([
-            "tag": JSON(tag)
-        ]))
+    /// - Parameter selector: Selector
+    init(_ selector: Selector) throws {
+        try self.payload = selector.makeJSON()
     }
 
 }

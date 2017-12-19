@@ -3,15 +3,15 @@ import Foundation
 
 /// Options segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#push-options
-public final class Options: BuildingBlock {
+struct Options: Segment {
     // MARK: Class fields
     
-    /// Options representation
+    let key: String = "options"
     var payload: JSON
     
     // MARK: Predefined values
     
-    public enum Predefined: JSONRepresentable {
+    public enum Selector: JSONRepresentable {
         
         case expireInOneHour
         case expireIn24Hours
@@ -52,6 +52,13 @@ public final class Options: BuildingBlock {
     /// - Parameter audience: JSON
     init(payload: JSON) {
         self.payload = payload
+    }
+    
+    /// Init from Selector
+    ///
+    /// - Parameter selector: Selector
+    init(_ selector: Selector) throws {
+        try self.payload = selector.makeJSON()
     }
 
 }

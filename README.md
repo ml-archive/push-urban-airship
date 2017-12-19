@@ -64,17 +64,17 @@ let request = UARequest(body: body)
 do {
     let response = try drop.uapusher?.send(request: request)
     if response.status == .accepted {
-        print("Push send..")
+        print("Push sent..")
     }
 } catch UAError.response(let uaResponse) {
     // let response = uaResponse.response[0]
 }
 ```
 
-The above example will send a text push notification with the message `hello world` to all users on the `ios` platforms
+The above example will send a text push notification with the message `hello world` to all users on the `ios` platform
 
 ### Chain your payload
-This package offers a way to easily customize they different segments of the final payload sent to Urban Airship, using the UABuilder class.
+This package offers a way to easily customize the different segments of the payload sent to Urban Airship, using the UABuilder class.
 
 ```swift
 ...

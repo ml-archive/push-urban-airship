@@ -21,7 +21,7 @@ class OptionsTests: XCTestCase {
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
         ])
         
-        let options: Options = try Options(predefined: .expireInOneHour)
+        let options: Options = try Options(.expireInOneHour)
         
         XCTAssertEqual(options.payload, expected)
     }
@@ -32,7 +32,7 @@ class OptionsTests: XCTestCase {
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
         ])
         
-        let options: Options = try Options(predefined: .expireIn24Hours)
+        let options: Options = try Options(.expireIn24Hours)
         
         XCTAssertEqual(options.payload, expected)
     }
@@ -43,7 +43,7 @@ class OptionsTests: XCTestCase {
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
         ])
         
-        let options: Options = try Options(predefined: .expireInOneWeek)
+        let options: Options = try Options(.expireInOneWeek)
         
         XCTAssertEqual(options.payload, expected)
     }
@@ -54,7 +54,7 @@ class OptionsTests: XCTestCase {
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
         ])
         
-        let options: Options = try Options(predefined: .expireInOneMonth)
+        let options: Options = try Options(.expireInOneMonth)
         
         XCTAssertEqual(options.payload, expected)
     }
@@ -65,7 +65,7 @@ class OptionsTests: XCTestCase {
             "expiry":.string(DateFormatter.uaISO8601.string(from: expiryDate))
         ])
         
-        let options: Options = try Options(predefined: .expireInOneYear)
+        let options: Options = try Options(.expireInOneYear)
         
         XCTAssertEqual(options.payload, expected)
     }
