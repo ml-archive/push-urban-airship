@@ -3,7 +3,6 @@
 [![Vapor Version](https://img.shields.io/badge/Vapor-2-F6CBCA.svg)](http://vapor.codes)
 [![Circle CI](https://circleci.com/gh/nodes-vapor/push-urban-airship/tree/master.svg?style=shield)](https://circleci.com/gh/nodes-vapor/push-urban-airship)
 [![codebeat badge](https://codebeat.co/badges/b5bcf3d5-63ac-4834-9e0c-e37681169cff)](https://codebeat.co/projects/github-com-nodes-vapor-push-urban-airship-master)
-[![codebeat badge](https://codebeat.co/badges/52c2f960-625c-4a63-ae63-52a24d747da1)](https://codebeat.co/projects/github-com-nodes-vapor-push-urban-airship)
 [![codecov](https://codecov.io/gh/nodes-vapor/push-urban-airship/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/push-urban-airship)
 [![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nodes-vapor/push-urban-airship)](http://clayallsopp.github.io/readme-score?url=https://github.com/nodes-vapor/push-urban-airship)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
