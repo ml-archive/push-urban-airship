@@ -8,7 +8,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
 
 
-Send push notifications with Urban Airship for Vapor
+Send push notifications with Urban Airship for Vapor.
 
 
 ## 📦 Installation
@@ -39,16 +39,16 @@ Create config file `uapusher.json` with following syntax
 }
 ```
 
-You can define multiple apps like in the example. Else just delete one of groups
+You can define multiple apps like in the example. Else just delete one of groups.
 
 
 ## Getting started 🚀
-Init the UAPusher to drop
+Set up the provider:
 
 ```swift
 import UAPusher
 
-try drop.addProvider(UAPusher.Provider.self)
+try config.addProvider(UAPusher.Provider.self)
 ```
 
 ### Example
@@ -75,7 +75,7 @@ do {
 	//let response = uaResponse.response[0]
 }
 ```
-Check out the api documentation (http://docs.urbanairship.com/api/ua/)
+Check out the api documentation (http://docs.urbanairship.com/api/ua/).
 
 
 ## 🏆 Credits
@@ -86,4 +86,4 @@ The package owner for this project is [Rasmus](https://github.com/rasmusebbesen)
 
 ## 📄 License
 
-This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
