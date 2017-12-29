@@ -4,7 +4,7 @@ import XCTest
 XCTMain([
     testCase(PushUrbanAirshipTests.allTests),
     testCase(AudienceTests.allTests),
-    testCase(CampaignTests.allTests),
+    testCase(CampaignsTests.allTests),
     testCase(DeviceTypesTests.allTests),
     testCase(InAppTests.allTests),
     testCase(MessageTests.allTests),
