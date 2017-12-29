@@ -1,11 +1,6 @@
 # UAPusher
-<<<<<<< HEAD
-Send push notification payloads to Urban Airship from your server using Vapor.
 
-[![Swift Version](https://img.shields.io/badge/Swift-3.1-brightgreen.svg)](http://swift.org)
-=======
 [![Swift Version](https://img.shields.io/badge/Swift-3-brightgreen.svg)](http://swift.org)
->>>>>>> master
 [![Vapor Version](https://img.shields.io/badge/Vapor-2-F6CBCA.svg)](http://vapor.codes)
 [![Circle CI](https://circleci.com/gh/nodes-vapor/push-urban-airship/tree/master.svg?style=shield)](https://circleci.com/gh/nodes-vapor/push-urban-airship)
 [![codebeat badge](https://codebeat.co/badges/b5bcf3d5-63ac-4834-9e0c-e37681169cff)](https://codebeat.co/projects/github-com-nodes-vapor-push-urban-airship-master)
@@ -13,13 +8,8 @@ Send push notification payloads to Urban Airship from your server using Vapor.
 [![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nodes-vapor/push-urban-airship)](http://clayallsopp.github.io/readme-score?url=https://github.com/nodes-vapor/push-urban-airship)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/push-urban-airship/master/LICENSE)
 
-<<<<<<< HEAD
-=======
-
 Send push notifications with Urban Airship for Vapor.
 
-
->>>>>>> master
 ## 📦 Installation
 Update your `Package.swift` file.
 ```swift
@@ -80,11 +70,8 @@ do {
     // let response = uaResponse.response[0]
 }
 ```
-<<<<<<< HEAD
+
 The above example will send a text push notification with the message `hello world` to all users on the `ios` platform
-=======
-Check out the api documentation (http://docs.urbanairship.com/api/ua/).
->>>>>>> master
 
 ### Chain your payload
 This package offers a way to easily customize the different segments of the payload sent to Urban Airship, using the UABuilder class.
@@ -120,9 +107,4 @@ This package is developed and maintained by the Vapor team at [Nodes](https://ww
 The package owner for this project is [Rasmus](https://github.com/rasmusebbesen).
 
 ## 📄 License
-<<<<<<< HEAD
-This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-=======
-
 This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
->>>>>>> master
