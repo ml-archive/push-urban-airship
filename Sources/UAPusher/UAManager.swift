@@ -31,11 +31,7 @@ public final class UAManager {
     }
     
     public func send(request: UARequest) throws -> UAResponse {
-        // For debugging
-        try print(request.getBody().makeResponse())
-        
         let responses = try self.connectionManager.post(slug: "/api/push", content: request.getBody())
-        
         let uaResponse = UAResponse(responses: responses)
         
         if uaResponse.status != .accepted {
