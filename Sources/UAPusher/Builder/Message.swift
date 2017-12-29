@@ -5,19 +5,19 @@ import JSON
 /// See: https://docs.urbanairship.com/api/ua/#rich-push-api
 /// NB: This requires a special plan at UA.
 /// See: https://www.urbanairship.com/products/mobile-app-engagement/pricing
-struct Message: Segment {
+public struct Message: Segment {
     
     // MARK: Class fields
     
-    let key: String = "message"
-    var payload: JSON
+    public let key: String = "message"
+    public var payload: JSON
     
     // MARK: Initializers
     
     /// Init from JSON
     ///
     /// - Parameter payload: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     

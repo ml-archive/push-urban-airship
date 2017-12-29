@@ -2,13 +2,13 @@ import JSON
 
 /// Notification segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/integration/#notfication-payload
-struct Notification: Segment {
+public struct Notification: Segment {
     // MARK: Class fields
     
-    let key: String = "notification"
-    var payload: JSON
+    public let key: String = "notification"
+    public var payload: JSON
     
-    // MARK: Predefined values
+    // MARK: Selector values
     
     public enum Selector: JSONRepresentable {
         case alert(value: String)
@@ -28,14 +28,14 @@ struct Notification: Segment {
     /// Init from JSON
     ///
     /// - Parameter payload: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     
     /// Init from Selector
     ///
     /// - Parameter selector: Selector
-    init(_ selector: Selector) throws {
+    public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }
 

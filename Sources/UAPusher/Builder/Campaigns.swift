@@ -3,12 +3,12 @@ import JSON
 
 /// Campaigns segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#campaigns-object
-struct Campaigns: Segment {
+public struct Campaigns: Segment {
     
     // MARK: Class fields
     
-    let key: String = "campaigns"
-    var payload: JSON
+    public let key: String = "campaigns"
+    public var payload: JSON
     
     // MARK: Selector values
     
@@ -30,14 +30,14 @@ struct Campaigns: Segment {
     /// Init from JSON
     ///
     /// - Parameter payload: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     
     /// Init from Selector
     ///
     /// - Parameter selector: Selector
-    init(_ selector: Selector) throws {
+    public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }
     

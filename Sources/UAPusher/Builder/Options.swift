@@ -3,13 +3,13 @@ import Foundation
 
 /// Options segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#push-options
-struct Options: Segment {
+public struct Options: Segment {
     // MARK: Class fields
     
-    let key: String = "options"
-    var payload: JSON
+    public let key: String = "options"
+    public var payload: JSON
     
-    // MARK: Predefined values
+    // MARK: Selector values
     
     public enum Selector: JSONRepresentable {
         
@@ -50,14 +50,14 @@ struct Options: Segment {
     /// Init from JSON
     ///
     /// - Parameter audience: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     
     /// Init from Selector
     ///
     /// - Parameter selector: Selector
-    init(_ selector: Selector) throws {
+    public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }
 

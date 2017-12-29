@@ -70,7 +70,6 @@ do {
     // let response = uaResponse.response[0]
 }
 ```
-
 The above example will send a text push notification with the message `hello world` to all users on the `ios` platform
 
 ### Chain your payload
@@ -78,20 +77,29 @@ This package offers a way to easily customize the different segments of the payl
 
 ```swift
 ...
-let builder = UABuilder()
-
-_ = try builder
-    .audience(tag: "tagged_targets")
-    .deviceTypes(compound: [.ios, .android])
-    .notification(alert: "Some informative push message text")
-
-let request: UARequest = UARequest(body: try builder.makeBody())
+let payload: JSON = try UABuilder().add(Audience(.all)
+    .add(Notification(.alert(value:"this is a test")))
+    .payload()
+        
+let request: UARequest = UARequest(body: payload)
 ...
 ```
 
-The above example will send a text push notification with the message `Some informative push message text` to all users subscribing to tag `tagged_targets` on the `ios` and `android` platforms
+You can also provide all segments in a list 
+```swift
+...
+let payload: JSON = try UABuilder().add([
+    Audience(.all),
+    Notification(.alert(value:"this is a test"))
+]).payload()
+        
+let request: UARequest = UARequest(body: payload)
+...
+```
 
-UABuilder currently lets you set `audience`, `device_type` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/)
+The above examples will define a text push notification with the message `this is a test` to all users.
+
+UABuilder currently lets you set `audience`, `campaigns`, `device_type`, `ìn_app`, `message` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/)
 
 ## 🏆 Credits
 This package is developed and maintained by the Vapor team at [Nodes](https://www.nodesagency.com).

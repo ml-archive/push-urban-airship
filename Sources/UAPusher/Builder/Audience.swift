@@ -2,21 +2,23 @@ import JSON
 
 /// Audience segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#audience-selectors
-struct Audience: Segment {
+public struct Audience: Segment {
     
     // MARK: Class fields
     
-    let key: String = "audience"
-    let payload: JSON
+    public let key: String = "audience"
+    public var payload: JSON
     
-    enum Selector: JSONRepresentable {
+    // MARK: Selector values
+    
+    public enum Selector: JSONRepresentable {
         case all
         case tag(value: String)
         case tags(values: [String])
         case namedUser(value: String)
         case alias(value: String)
         
-        func makeJSON() throws -> JSON {
+        public func makeJSON() throws -> JSON {
             switch self {
             case .all:
                 return "all"
@@ -47,14 +49,14 @@ struct Audience: Segment {
     /// Init from JSON
     ///
     /// - Parameter payload: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     
     /// Init from Selector
     ///
     /// - Parameter selector: Selector
-    init(_ selector: Selector) throws {
+    public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }
 

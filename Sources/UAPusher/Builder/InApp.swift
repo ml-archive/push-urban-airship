@@ -3,18 +3,18 @@ import JSON
 
 /// In-app segment of an Urban Airship push notification payload
 /// See: https://docs.urbanairship.com/api/ua/#api-in-app-object
-struct InApp: Segment {
+public struct InApp: Segment {
     // MARK: Class fields
     
-    let key: String = "in_app"
-    var payload: JSON
+    public let key: String = "in_app"
+    public var payload: JSON
     
     // MARK: Initializers
     
     /// Init from JSON
     ///
     /// - Parameter payload: JSON
-    init(payload: JSON) {
+    public init(payload: JSON) {
         self.payload = payload
     }
     

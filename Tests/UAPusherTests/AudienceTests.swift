@@ -22,9 +22,8 @@ class AudienceTests: XCTestCase {
     func testAudienceInitFromTag() throws {
         let tag: String = "user_xyz"
         
-        let expected: JSON = JSON([
-            "tag": .string(tag)
-        ])
+        var expected: JSON = JSON()
+        try expected.set("tag", tag)
         
         let audience = try Audience(.tag(value: tag))
         XCTAssertEqual(audience.payload, expected)
@@ -37,6 +36,26 @@ class AudienceTests: XCTestCase {
         try expected.set("tag", tags)
         
         let audience = try Audience(.tags(values: tags))
+        XCTAssertEqual(audience.payload, expected)
+    }
+    
+    func testAudienceInitFromNamedUser() throws {
+        let namedUser: String = "user_123"
+        
+        var expected: JSON = JSON()
+        try expected.set("named_user", namedUser)
+        
+        let audience = try Audience(.namedUser(value: namedUser))
+        XCTAssertEqual(audience.payload, expected)
+    }
+    
+    func testAudienceInitFromAlias() throws {
+        let alias: String = "user_123"
+        
+        var expected: JSON = JSON()
+        try expected.set("named_user", alias)
+        
+        let audience = try Audience(.alias(value: alias))
         XCTAssertEqual(audience.payload, expected)
     }
     
