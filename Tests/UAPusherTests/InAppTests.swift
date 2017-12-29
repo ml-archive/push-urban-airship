@@ -4,6 +4,11 @@ import JSON
 @testable import UAPusher
 
 class InAppTests: XCTestCase {
+    static var allTests : [(String, (InAppTests) -> () throws -> Void)] {
+        return [
+            ("testInAppInitFromJSON", testInAppInitFromJSON)
+        ]
+    }
     
     func testInAppInitFromJSON() {
         let inAppJson: JSON = JSON([

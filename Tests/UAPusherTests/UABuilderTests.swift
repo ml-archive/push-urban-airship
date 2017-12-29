@@ -4,6 +4,13 @@ import JSON
 @testable import UAPusher
 
 class UABuilderTests: XCTestCase {
+    static var allTests : [(String, (UABuilderTests) -> () throws -> Void)] {
+        return [
+            ("testEmptyState", testEmptyState),
+            ("testSingleSegment", testSingleSegment),
+            ("testMultipleSegments", testMultipleSegments)
+        ]
+    }
     
     func testEmptyState() throws {
         let expected: JSON = JSON()

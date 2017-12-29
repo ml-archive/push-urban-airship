@@ -3,6 +3,17 @@ import JSON
 @testable import UAPusher
 
 class DeviceTypesTests: XCTestCase {
+    static var allTests : [(String, (DeviceTypesTests) -> () throws -> Void)] {
+        return [
+            ("testDeviceTypesInitFromJSON", testDeviceTypesInitFromJSON),
+            ("testDeviceTypesInitFromPredefinedAll", testDeviceTypesInitFromPredefinedAll),
+            ("testDeviceTypesInitFromPredefinedIos", testDeviceTypesInitFromPredefinedIos),
+            ("testDeviceTypesInitFromPredefinedAndroid", testDeviceTypesInitFromPredefinedAndroid),
+            ("testDeviceTypesInitFromPredefinedWindowsPhone", testDeviceTypesInitFromPredefinedWindowsPhone),
+            ("testDeviceTypesInitFromPredefinedWeb", testDeviceTypesInitFromPredefinedWeb),
+            ("testDeviceTypesInitFromCompoundPredefined", testDeviceTypesInitFromCompoundPredefined)
+        ]
+    }
     
     func testDeviceTypesInitFromJSON() {
         let deviceTypesJson: JSON = JSON(["ios", "android", "web"])

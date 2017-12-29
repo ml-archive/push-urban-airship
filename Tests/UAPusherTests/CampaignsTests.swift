@@ -3,7 +3,13 @@ import XCTest
 import JSON
 @testable import UAPusher
 
-class CampaignsTest: XCTestCase {
+class CampaignsTests: XCTestCase {
+    static var allTests : [(String, (CampaignsTests) -> () throws -> Void)] {
+        return [
+            ("testCampaignsInitFromJSON", testCampaignsInitFromJSON),
+            ("testCampaingsInitFromCategories", testCampaingsInitFromCategories)
+        ]
+    }
     
     func testCampaignsInitFromJSON() {
         let campaignJson: JSON = JSON([

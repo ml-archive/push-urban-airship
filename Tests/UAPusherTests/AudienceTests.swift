@@ -3,6 +3,16 @@ import JSON
 @testable import UAPusher
 
 class AudienceTests: XCTestCase {
+    static var allTests : [(String, (AudienceTests) -> () throws -> Void)] {
+        return [
+            ("testAudienceInitFromJSON", testAudienceInitFromJSON),
+            ("testAudienceInitFromAll", testAudienceInitFromAll),
+            ("testAudienceInitFromTag", testAudienceInitFromTag),
+            ("testAudienceInitFromTags", testAudienceInitFromTags),
+            ("testAudienceInitFromNamedUser", testAudienceInitFromNamedUser),
+            ("testAudienceInitFromAlias", testAudienceInitFromAlias)
+        ]
+    }
     
     func testAudienceInitFromJSON() {
         let audienceJson: JSON = JSON([
@@ -58,5 +68,5 @@ class AudienceTests: XCTestCase {
         let audience = try Audience(.alias(value: alias))
         XCTAssertEqual(audience.payload, expected)
     }
-    
+
 }

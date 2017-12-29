@@ -3,6 +3,12 @@ import JSON
 @testable import UAPusher
 
 class NotificationTests: XCTestCase {
+    static var allTests : [(String, (NotificationTests) -> () throws -> Void)] {
+        return [
+            ("testNotificationInitFromJSON", testNotificationInitFromJSON),
+            ("testNotificationInitFromPredefined", testNotificationInitFromPredefined)
+        ]
+    }
     
     func testNotificationInitFromJSON() {
         let notificationJson: JSON = JSON([

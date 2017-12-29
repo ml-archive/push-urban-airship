@@ -3,6 +3,16 @@ import JSON
 @testable import UAPusher
 
 class OptionsTests: XCTestCase {
+    static var allTests : [(String, (OptionsTests) -> () throws -> Void)] {
+        return [
+            ("testOptionsInitFromJSON", testOptionsInitFromJSON),
+            ("testOptionsInitFromPredefinedOneHour", testOptionsInitFromPredefinedOneHour),
+            ("testOptionsInitFromPredefined24Hours", testOptionsInitFromPredefined24Hours),
+            ("testOptionsInitFromPredefinedOneWeek", testOptionsInitFromPredefinedOneWeek),
+            ("testOptionsInitFromPredefinedOneMonth", testOptionsInitFromPredefinedOneMonth),
+            ("testOptionsInitFromPredefinedOneYear", testOptionsInitFromPredefinedOneYear)
+        ]
+    }
     
     func testOptionsInitFromJSON() {
         let expiryDate = Date()
