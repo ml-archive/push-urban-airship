@@ -28,25 +28,25 @@ class DeviceTypesTests: XCTestCase {
     }
     
     func testDeviceTypesInitFromPredefinedIos() throws {
-        let expected: JSON = JSON("ios")
+        let expected: JSON = JSON(["ios"])
         let deviceTypes = try DeviceTypes(.ios)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedAndroid() throws {
-        let expected: JSON = JSON("android")
+        let expected: JSON = JSON(["android"])
         let deviceTypes = try DeviceTypes(.android)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedWindowsPhone() throws {
-        let expected: JSON = JSON("wns")
+        let expected: JSON = JSON(["wns"])
         let deviceTypes = try DeviceTypes(.windows)
         XCTAssertEqual(deviceTypes.payload, expected)
     }
     
     func testDeviceTypesInitFromPredefinedWeb() throws {
-        let expected: JSON = JSON("web")
+        let expected: JSON = JSON(["web"])
         let deviceTypes = try DeviceTypes(.web)
         XCTAssertEqual(deviceTypes.payload, expected)
     }

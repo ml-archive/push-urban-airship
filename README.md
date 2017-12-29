@@ -80,6 +80,7 @@ This package offers a way to easily customize the different segments of the payl
 ...
 let payload: JSON = try UABuilder().add(Audience(.all)
     .add(Notification(.alert(value:"this is a test")))
+    .add(DeviceTypes(.android))
     .payload()
         
 let request: UARequest = UARequest(body: payload)
@@ -91,6 +92,7 @@ You can also provide all segments in a list
 ...
 let payload: JSON = try UABuilder().add([
     Audience(.all),
+    DeviceTypes(.android),
     Notification(.alert(value:"this is a test"))
 ]).payload()
         

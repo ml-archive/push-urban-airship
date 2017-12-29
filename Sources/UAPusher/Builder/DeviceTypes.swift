@@ -47,7 +47,12 @@ public struct DeviceTypes: Segment {
     ///
     /// - Parameter selector: Selector
     public init(_ selector: Selector) throws {
-        self.payload = selector.makeJSON()
+        guard selector == .all else {
+            self.init([selector])
+            return
+        }
+        
+        self.init(payload: selector.makeJSON())
     }
     
     /// Init from list of predefined values
