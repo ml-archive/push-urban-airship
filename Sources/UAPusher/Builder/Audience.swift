@@ -7,7 +7,7 @@ public struct Audience: Segment {
     // MARK: Class fields
     
     public let key: String = "audience"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Selector values
     

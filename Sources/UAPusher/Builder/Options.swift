@@ -7,7 +7,7 @@ public struct Options: Segment {
     // MARK: Class fields
     
     public let key: String = "options"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Selector values
     

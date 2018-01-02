@@ -6,7 +6,7 @@ public struct Notification: Segment {
     // MARK: Class fields
     
     public let key: String = "notification"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Selector values
     

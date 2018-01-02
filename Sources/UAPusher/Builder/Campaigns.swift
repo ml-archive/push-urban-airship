@@ -8,7 +8,7 @@ public struct Campaigns: Segment {
     // MARK: Class fields
     
     public let key: String = "campaigns"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Selector values
     

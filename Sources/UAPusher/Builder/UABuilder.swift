@@ -4,7 +4,7 @@ import Vapor
 public final class UABuilder {
     
     /// Payload segments
-    public var segments: [Segment]
+    private var segments: [Segment]
     
     /// Initializer
     public init() {

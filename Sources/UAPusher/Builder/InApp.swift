@@ -7,7 +7,7 @@ public struct InApp: Segment {
     // MARK: Class fields
     
     public let key: String = "in_app"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Initializers
     

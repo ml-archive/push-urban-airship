@@ -10,7 +10,7 @@ public struct Message: Segment {
     // MARK: Class fields
     
     public let key: String = "message"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Initializers
     

@@ -7,7 +7,7 @@ public struct DeviceTypes: Segment {
     // MARK: Class fields
     
     public let key: String = "device_types"
-    public var payload: JSON
+    public let payload: JSON
     
     // MARK: Selector values
     

@@ -78,7 +78,8 @@ This package offers a way to easily customize the different segments of the payl
 
 ```swift
 ...
-let payload: JSON = try UABuilder().add(Audience(.all)
+let payload: JSON = try UABuilder()
+    .add(Audience(.all)
     .add(Notification(.alert(value:"this is a test")))
     .add(DeviceTypes(.android))
     .payload()
