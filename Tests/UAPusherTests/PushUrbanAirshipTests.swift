@@ -6,7 +6,6 @@ class PushUrbanAirshipTests: XCTestCase {
         XCTAssertTrue(true)
     }
 
-
     static var allTests : [(String, (PushUrbanAirshipTests) -> () throws -> Void)] {
         return [
             ("test", test),
