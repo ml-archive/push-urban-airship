@@ -10,5 +10,5 @@ XCTMain([
     testCase(MessageTests.allTests),
     testCase(NotificationTests.allTests),
     testCase(OptionsTests.allTests),
-    testCase(UABuilderTests.allTests)
+    testCase(BuilderTests.allTests)
 ])

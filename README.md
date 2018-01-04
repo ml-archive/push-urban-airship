@@ -101,7 +101,7 @@ let request: UARequest = UARequest(body: payload)
 ...
 ```
 
-The above examples will define a text push notification with the message `this is a test` to all users.
+The above examples will define a text push notification with the message `this is a test` to all users on the Android platform.
 
 UABuilder currently lets you set `audience`, `campaigns`, `device_type`, `ìn_app`, `message` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/)
 
