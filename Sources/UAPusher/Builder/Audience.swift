@@ -6,11 +6,21 @@ public struct Audience: Segment {
     
     // MARK: Class fields
     
+    /// Key used for payload segment
     public let key: String = "audience"
+    
+    /// The payload segment itself
     public let payload: JSON
     
     // MARK: Selector values
     
+    /// Predefined payload segment selectors
+    ///
+    /// - all: "all"
+    /// - tag: {"tag": "some-tag"}
+    /// - tags: {"tag": ["tag-1", "tag-2", ...]}
+    /// - namedUser: {"named_user": "some_user_identifier"}
+    /// - alias: **Deprecated** use namedUser instead
     public enum Selector: JSONRepresentable {
         case all
         case tag(value: String)
@@ -18,6 +28,10 @@ public struct Audience: Segment {
         case namedUser(value: String)
         case alias(value: String)
         
+        /// Generate json for corresponding enum case
+        ///
+        /// - Returns: Json representation of the payload segmet
+        /// - Throws: If values cannot be converted to json
         public func makeJSON() throws -> JSON {
             switch self {
             case .all:
@@ -46,16 +60,16 @@ public struct Audience: Segment {
     
     // MARK: Initializers
     
-    /// Init from JSON
+    /// Initialize the audience segment from JSON
     ///
-    /// - Parameter payload: JSON
+    /// - Parameter payload: Payload segment to use in final payload
     public init(payload: JSON) {
         self.payload = payload
     }
     
-    /// Init from Selector
+    /// Initialize the audience segment from Selector
     ///
-    /// - Parameter selector: Selector
+    /// - Parameter selector: Selector for a predefined payload segment
     public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }

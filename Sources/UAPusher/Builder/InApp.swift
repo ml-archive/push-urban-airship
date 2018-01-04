@@ -6,12 +6,15 @@ import JSON
 public struct InApp: Segment {
     // MARK: Class fields
     
+    /// Key used for payload segment
     public let key: String = "in_app"
+    
+    /// The payload segment itself
     public let payload: JSON
     
     // MARK: Initializers
     
-    /// Init from JSON
+    /// Initialize the In app segment from JSON
     ///
     /// - Parameter payload: JSON
     public init(payload: JSON) {

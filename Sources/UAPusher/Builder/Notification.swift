@@ -5,14 +5,24 @@ import JSON
 public struct Notification: Segment {
     // MARK: Class fields
     
+    /// Key used for payload segment
     public let key: String = "notification"
+    
+    /// The payload segment itself
     public let payload: JSON
     
     // MARK: Selector values
     
+    /// Predefined payload segment selectors
+    ///
+    /// - alert: "alert": "The text shown in push"
     public enum Selector: JSONRepresentable {
         case alert(value: String)
         
+        /// Generate json for corresponding enum case
+        ///
+        /// - Returns: Json representation of the payload segmet
+        /// - Throws: If values cannot be converted to json
         public func makeJSON() throws -> JSON {
             switch self {
             case .alert(let value):
@@ -25,14 +35,14 @@ public struct Notification: Segment {
     
     // MARK: Initializers
     
-    /// Init from JSON
+    /// Initialize the notification segment from JSON
     ///
     /// - Parameter payload: JSON
     public init(payload: JSON) {
         self.payload = payload
     }
     
-    /// Init from Selector
+    /// Initialize the notification segment from Selector
     ///
     /// - Parameter selector: Selector
     public init(_ selector: Selector) throws {

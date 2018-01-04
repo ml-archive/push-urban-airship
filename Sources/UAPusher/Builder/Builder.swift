@@ -1,30 +1,30 @@
 import Vapor
 
 /// Builder class for the request payload
-public final class UABuilder {
+public final class Builder {
     
     /// Payload segments
     private var segments: [Segment]
     
-    /// Initializer
+    /// Initializes the builder
     public init() {
         self.segments = []
     }
     
     /// Add a single segment
     ///
-    /// - Parameter segment: Segment UA payload segment
-    /// - Returns: UABuilder
-    public func add(_ segment: Segment) -> UABuilder {
+    /// - Parameter segment: Segment Urban airship payload segment
+    /// - Returns: Builder
+    public func add(_ segment: Segment) -> Builder {
         segments.append(segment)
         return self
     }
     
     /// Add a list of segments
     ///
-    /// - Parameter segments: [Segment] List of UA payload segments
-    /// - Returns: UABuilder
-    public func add(_ segments: [Segment]) -> UABuilder {
+    /// - Parameter segments: [Segment] List of Urban airship payload segments
+    /// - Returns: Builder
+    public func add(_ segments: [Segment]) -> Builder {
         self.segments.append(contentsOf: segments)
         return self
     }

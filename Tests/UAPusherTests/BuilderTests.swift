@@ -3,8 +3,8 @@ import XCTest
 import JSON
 @testable import UAPusher
 
-class UABuilderTests: XCTestCase {
-    static var allTests : [(String, (UABuilderTests) -> () throws -> Void)] {
+class BuilderTests: XCTestCase {
+    static var allTests : [(String, (BuilderTests) -> () throws -> Void)] {
         return [
             ("testEmptyState", testEmptyState),
             ("testSingleSegment", testSingleSegment),
@@ -14,7 +14,7 @@ class UABuilderTests: XCTestCase {
     
     func testEmptyState() throws {
         let expected: JSON = JSON()
-        let builder: UABuilder = UABuilder()
+        let builder: Builder = Builder()
         XCTAssertEqual(try builder.payload(), expected)
     }
     
@@ -24,7 +24,7 @@ class UABuilderTests: XCTestCase {
         var expected: JSON = JSON()
         try expected.set(segment.key, segment.payload)
         
-        let builder: UABuilder = UABuilder()
+        let builder: Builder = Builder()
         _ = builder.add(segment)
         
         XCTAssertEqual(try builder.payload(), expected)
@@ -43,7 +43,7 @@ class UABuilderTests: XCTestCase {
             try expected.set(segment.key, segment.payload)
         }
         
-        let builder = UABuilder()
+        let builder = Builder()
         _ = builder.add(segments)
         
         XCTAssertEqual(try builder.payload(), expected)

@@ -7,4 +7,3 @@ public protocol Segment {
     var payload: JSON { get }
     init(payload: JSON)
 }
-

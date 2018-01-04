@@ -8,6 +8,11 @@ public final class ConnectionMananger {
     let baseUrl = "https://go.urbanairship.com"
     let config: UAPusherConfig
     
+    /// Initialize ConnectionManager
+    ///
+    /// - Parameters:
+    ///   - drop: Vapor droplet
+    ///   - config: Parsed vapor config
     public init(drop: Droplet, config: UAPusherConfig) {
         self.drop = drop
         self.config = config

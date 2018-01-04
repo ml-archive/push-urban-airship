@@ -6,19 +6,32 @@ import Foundation
 public struct Options: Segment {
     // MARK: Class fields
     
+    /// Key used for payload segment
     public let key: String = "options"
+    
+    /// The payload segment itself
     public let payload: JSON
     
     // MARK: Selector values
     
+    /// Predefined payload segment selectors
+    ///
+    /// - expireInOneHour
+    /// - expireIn24Hours
+    /// - expireInOneWeek
+    /// - expireInOneMonth
+    /// - expireInOneYear
     public enum Selector: JSONRepresentable {
-        
         case expireInOneHour
         case expireIn24Hours
         case expireInOneWeek
         case expireInOneMonth
         case expireInOneYear
         
+        /// Generate json for corresponding enum case
+        ///
+        /// - Returns: Json representation of the payload segmet
+        /// - Throws: If values cannot be converted to json
         public func makeJSON() throws -> JSON {
             var expiration: Date
             
@@ -47,16 +60,16 @@ public struct Options: Segment {
     
     // MARK: Initializers
     
-    /// Init from JSON
+    /// Initialize the options segment from JSON
     ///
-    /// - Parameter audience: JSON
+    /// - Parameter payload: Payload segment to use in final payload
     public init(payload: JSON) {
         self.payload = payload
     }
     
-    /// Init from Selector
+    /// Initialize the options segment from Selector
     ///
-    /// - Parameter selector: Selector
+    /// - Parameter selector: Selector for a predefined payload segment
     public init(_ selector: Selector) throws {
         try self.payload = selector.makeJSON()
     }
