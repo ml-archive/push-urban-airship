@@ -19,7 +19,7 @@ public struct UAPusherConfig {
             )
         }
         
-        if (applicationGroupConfig.count < 1){
+        if (applicationGroupConfig.count < 1) {
             throw Abort(
                 .internalServerError,
                 metadata: nil,
@@ -27,7 +27,7 @@ public struct UAPusherConfig {
             )
         }
         
-        // Load groups and applications
+        // Init groups and applications
         for applicationGroup in applicationGroupConfig {
             var group = ApplicationGroup(name: applicationGroup.key, applications: [])
             
