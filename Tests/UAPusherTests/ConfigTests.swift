@@ -10,10 +10,9 @@ class ConfigTests: XCTestCase {
             ("testInvalidConfigNoAppKeyThrowsError", testInvalidConfigNoAppKeyThrowsError),
             ("testInvalidConfigNoMasterSecretThrowsError", testInvalidConfigNoMasterSecretThrowsError),
             ("testInvalidConfigNoAppNameThrowsError", testInvalidConfigNoAppNameThrowsError),
-            ("testInvalidConfigNoConfigThrowsError", testInvalidConfigNoConfigThrowsError),
-            ("testInvalidConfigWrongKeyGroup", testInvalidConfigWrongKeyGroup),
-            ("testInvalidConfigWrongKeyAppKey", testInvalidConfigWrongKeyAppKey),
-            ("testInvalidConfigWrongKeyMasterSecret", testInvalidConfigWrongKeyMasterSecret),
+            ("testInvalidConfigWrongKeyGroupThrowsError", testInvalidConfigWrongKeyGroupThrowsError),
+            ("testInvalidConfigWrongKeyAppKeyThrowsError", testInvalidConfigWrongKeyAppKeyThrowsError),
+            ("testInvalidConfigWrongKeyMasterSecretThrowsError", testInvalidConfigWrongKeyMasterSecretThrowsError),
             ("testInvalidConfigNoGroupsThrowsError", testInvalidConfigNoGroupsThrowsError),
             ("testInvalidConfigNoAppsThrowsError", testInvalidConfigNoAppsThrowsError)
         ]
@@ -87,30 +86,20 @@ class ConfigTests: XCTestCase {
         XCTAssertThrowsError(try UAPusherConfig(config: config))
     }
     
-    func testInvalidConfigNoConfigThrowsError() throws {
-        let config: Config = Config([])
-        XCTAssertThrowsError(try UAPusherConfig(config: config))
-    }
-    
     func testInvalidConfigNoGroupsThrowsError() throws {
-        let config: Config = Config([
-            "applicationGroups": []
-        ])
-        
+        let config: Config = Config([:])
         XCTAssertThrowsError(try UAPusherConfig(config: config))
     }
     
     func testInvalidConfigNoAppsThrowsError() throws {
         let config: Config = Config([
-            "applicationGroups": [
-                "defaultGroup": []
-            ]
+            "applicationGroups": [:]
         ])
         
         XCTAssertThrowsError(try UAPusherConfig(config: config))
     }
     
-    func testInvalidConfigWrongKeyGroup() throws {
+    func testInvalidConfigWrongKeyGroupThrowsError() throws {
         let config: Config = Config([
             "appGroups": [
                 "defaultGroup": [
@@ -125,7 +114,7 @@ class ConfigTests: XCTestCase {
         XCTAssertThrowsError(try UAPusherConfig(config: config))
     }
     
-    func testInvalidConfigWrongKeyAppKey() throws {
+    func testInvalidConfigWrongKeyAppKeyThrowsError() throws {
         let config: Config = Config([
             "applicationGroups": [
                 "defaultGroup": [
@@ -140,7 +129,7 @@ class ConfigTests: XCTestCase {
         XCTAssertThrowsError(try UAPusherConfig(config: config))
     }
     
-    func testInvalidConfigWrongKeyMasterSecret() throws {
+    func testInvalidConfigWrongKeyMasterSecretThrowsError() throws {
         let config: Config = Config([
             "applicationGroups": [
                 "defaultGroup": [
