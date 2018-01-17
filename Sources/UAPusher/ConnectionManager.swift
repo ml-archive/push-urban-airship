@@ -2,7 +2,7 @@ import Vapor
 import HTTP
 import Foundation
 
-public final class ConnectionMananger {
+public final class ConnectionManager {
     
     let drop: Droplet
     let baseUrl = "https://go.urbanairship.com"

@@ -8,25 +8,25 @@ public enum UAError: Swift.Error {
 public final class UAManager {
     
     public let config: UAPusherConfig
-    public let connectionManager: ConnectionMananger
+    public let connectionManager: ConnectionManager
     public let drop: Droplet
 
     public convenience init(drop: Droplet) throws {
         let uaPusherConfig = try UAPusherConfig(drop: drop)
-        let connectionManager = ConnectionMananger(drop: drop, config: uaPusherConfig)
+        let connectionManager = ConnectionManager(drop: drop, config: uaPusherConfig)
         
-        self.init(config: uaPusherConfig, connectionMananger: connectionManager, drop: drop)
+        self.init(config: uaPusherConfig, connectionManager: connectionManager, drop: drop)
     }
     
     public convenience init(uaPusherConfig: UAPusherConfig, drop: Droplet) {
-        let connectionManager = ConnectionMananger(drop: drop, config: uaPusherConfig)
+        let connectionManager = ConnectionManager(drop: drop, config: uaPusherConfig)
         
-        self.init(config: uaPusherConfig, connectionMananger: connectionManager, drop: drop)
+        self.init(config: uaPusherConfig, connectionManager: connectionManager, drop: drop)
     }
     
-    public init(config: UAPusherConfig, connectionMananger: ConnectionMananger, drop: Droplet) {
+    public init(config: UAPusherConfig, connectionManager: ConnectionManager, drop: Droplet) {
         self.config = config
-        self.connectionManager = connectionMananger
+        self.connectionManager = connectionManager
         self.drop = drop
     }
     
