@@ -1,16 +1,20 @@
 import Vapor
 import HTTP
 import Foundation
+import TLS
 
 public final class ConnectionManager {
-    
-    let drop: Droplet
-    let baseUrl = "https://go.urbanairship.com"
+    static let baseUrl = "https://go.urbanairship.com"
+    let client: ClientProtocol
     let config: UAPusherConfig
     
-    public init(drop: Droplet, config: UAPusherConfig) {
-        self.drop = drop
+    public init(clientFactory: ClientFactoryProtocol, config: UAPusherConfig) throws {
         self.config = config
+        self.client = try clientFactory.makeClient(
+            hostname: ConnectionManager.baseUrl,
+            port: 443,
+            securityLayer: .tls(Context(.client))
+        )
     }
     
     /// Defines the headers of the request with the given appKey and
@@ -47,7 +51,7 @@ public final class ConnectionManager {
     /// - Throws: if POST fails
     func post(slug: String, content: JSON) throws -> [Response] {
         
-        let url = baseUrl + slug
+        let url = ConnectionManager.baseUrl + slug
         let body = content.makeBody()
         
         var responses: [Response] = []
@@ -61,7 +65,7 @@ public final class ConnectionManager {
                     masterSecret: application.masterSecret
                 )
 
-                let uaResponse = try drop.client.post(
+                let uaResponse = try client.post(
                     url,
                     query: [:],
                     headers,
