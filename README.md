@@ -13,7 +13,7 @@ Send push notifications with Urban Airship for Vapor.
 ## 📦 Installation
 Update your `Package.swift` file.
 ```swift
-.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 1)
+.Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 2)
 ```
 
 ### Config
@@ -71,7 +71,7 @@ do {
 }
 ```
 
-The above example will send a text push notification with the message `hello world` to all users on the `ios` platform
+The above example will send a text push notification with the message `hello world` to all users on the `ios` platform.
 
 ### Chain your payload
 This package offers a way to easily customize the different segments of the payload sent to Urban Airship, using the UABuilder class.
@@ -103,7 +103,7 @@ let request: UARequest = UARequest(body: payload)
 
 The above examples will define a text push notification with the message `this is a test` to all users.
 
-UABuilder currently lets you set `audience`, `campaigns`, `device_type`, `ìn_app`, `message` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/)
+UABuilder currently lets you set `audience`, `campaigns`, `device_type`, `ìn_app`, `message` and `notification`. Method overloads allow you to set the payload segments directly using custom JSON or using a preset value. For more information see the [Urban Airship documentation](https://docs.urbanairship.com/api/ua/#push-object) about the push object or check out the [full api documentation](http://docs.urbanairship.com/api/ua/).
 
 ## 🏆 Credits
 This package is developed and maintained by the Vapor team at [Nodes](https://www.nodesagency.com).
