@@ -5,8 +5,8 @@ import TLS
 
 public final class ConnectionManager {
     static let baseUrl = "https://go.urbanairship.com"
-    let client: ClientProtocol
-    let config: UAPusherConfig
+    private let client: ClientProtocol
+    private let config: UAPusherConfig
     
     public init(clientFactory: ClientFactoryProtocol, config: UAPusherConfig) throws {
         self.config = config
