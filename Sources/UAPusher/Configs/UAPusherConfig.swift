@@ -1,25 +1,18 @@
 import Vapor
 
 public struct UAPusherConfig {
-    
     var applicationGroups: [ApplicationGroup] = []
     
-    public init(drop: Droplet) throws {
-        
-        // Set config
-        guard let config: Config = drop.config["uapusher"] else {
+    public init(config: Config) throws {
+        guard let pusherConfig: Config = config["uapusher"] else {
             throw Abort(
                 .internalServerError,
                 metadata: nil,
                 reason: "UAPusher error - uapusher.json config is missing."
             )
         }
-        
-        try self.init(config: config)
-    }
-    
-    public init(config: Config) throws {
-        guard let applicationGroups = config["applicationGroups"]?.object else {
+
+        guard let applicationGroups = pusherConfig["applicationGroups"]?.object else {
             throw Abort(
                 .internalServerError,
                 metadata: nil,
