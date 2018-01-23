@@ -1,13 +1,22 @@
-import Vapor
-import HTTP
 import Foundation
+import HTTP
+import TLS
+import Vapor
 
 public final class ConnectionManager {
     static let baseUrl = "https://go.urbanairship.com"
     internal var client: ClientProtocol?
     private let config: UAPusherConfig
     
-    public init(config: UAPusherConfig) throws {
+    public init(
+        config: UAPusherConfig,
+        clientFactory: ClientFactoryProtocol? = nil
+    ) throws {
+        client = try clientFactory?.makeClient(
+            hostname: ConnectionManager.baseUrl,
+            port: 443,
+            securityLayer: .tls(Context(.client))
+        )
         self.config = config
     }
     
