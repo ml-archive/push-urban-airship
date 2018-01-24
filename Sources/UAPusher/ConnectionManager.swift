@@ -1,20 +1,23 @@
-import Vapor
-import HTTP
 import Foundation
+import HTTP
 import TLS
+import Vapor
 
 public final class ConnectionManager {
     static let baseUrl = "https://go.urbanairship.com"
     private let client: ClientProtocol
     private let config: UAPusherConfig
     
-    public init(clientFactory: ClientFactoryProtocol, config: UAPusherConfig) throws {
-        self.config = config
-        self.client = try clientFactory.makeClient(
+    public init(
+        config: UAPusherConfig,
+        clientFactory: ClientFactoryProtocol
+    ) throws {
+        client = try clientFactory.makeClient(
             hostname: ConnectionManager.baseUrl,
             port: 443,
             securityLayer: .tls(Context(.client))
         )
+        self.config = config
     }
     
     /// Defines the headers of the request with the given appKey and
@@ -50,7 +53,6 @@ public final class ConnectionManager {
     /// - Returns: array of Status for each request made
     /// - Throws: if POST fails
     func post(slug: String, content: JSON) throws -> [Response] {
-        
         let url = ConnectionManager.baseUrl + slug
         let body = content.makeBody()
         
