@@ -5,14 +5,14 @@ import Vapor
 
 public final class ConnectionManager {
     static let baseUrl = "https://go.urbanairship.com"
-    internal var client: ClientProtocol?
+    private let client: ClientProtocol
     private let config: UAPusherConfig
     
     public init(
         config: UAPusherConfig,
-        clientFactory: ClientFactoryProtocol? = nil
+        clientFactory: ClientFactoryProtocol
     ) throws {
-        client = try clientFactory?.makeClient(
+        client = try clientFactory.makeClient(
             hostname: ConnectionManager.baseUrl,
             port: 443,
             securityLayer: .tls(Context(.client))
@@ -53,10 +53,6 @@ public final class ConnectionManager {
     /// - Returns: array of Status for each request made
     /// - Throws: if POST fails
     func post(slug: String, content: JSON) throws -> [Response] {
-        guard let client = client else {
-            throw Abort(.internalServerError, reason: "Client is not set up")
-        }
-
         let url = ConnectionManager.baseUrl + slug
         let body = content.makeBody()
         
