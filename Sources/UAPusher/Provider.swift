@@ -1,3 +1,4 @@
+import HTTP
 import Vapor
 
 public final class Provider: Vapor.Provider {
@@ -9,7 +10,7 @@ public final class Provider: Vapor.Provider {
     public func boot(_ drop: Droplet) throws {
         let connectionManager = try ConnectionManager(
             config: self.config,
-            clientFactory: drop.config.resolveClient()
+            clientFactory: FoundationClientFactory()
         )
 
         drop.uapusher = UAManager(connectionManager: connectionManager)
