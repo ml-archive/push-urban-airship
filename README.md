@@ -11,9 +11,33 @@
 Send push notifications with Urban Airship for Vapor.
 
 ## 📦 Installation
+
+### Install package using SPM
+
 Update your `Package.swift` file.
+
+#### Swift 3
+
 ```swift
 .Package(url: "https://github.com/nodes-vapor/push-urban-airship.git", majorVersion: 2)
+```
+
+#### Swift 4
+
+```swift
+.package(url: "https://github.com/nodes-vapor/push-urban-airship.git", .upToNextMajor(from: "2.0.1"))
+```
+```swift
+targets: [
+    .target(
+        name: "App",
+        dependencies: [
+            ...
+            "UAPusher"
+        ]
+    ),
+    ...
+]
 ```
 
 ### Config
